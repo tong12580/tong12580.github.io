@@ -79,4 +79,4 @@ theme: hexo-theme-material
 deploy:
   type: git
   repo: https://github.com/tong12580/tong12580.github.io.git
-  branch: gh-pages
+  branch: master
