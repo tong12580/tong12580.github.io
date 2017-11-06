@@ -1,0 +1,18 @@
+<!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    <% if(theme.scheme === 'Paradox') { %>
+        <!-- Paradox Footer Left Section -->
+        <%- partial('_partial/footer-left') %>
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©<% if(theme.copyright_since) { %>&nbsp;<%= theme.copyright_since %>&nbsp;-<% } %><script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script><%- config.title %>
+        </div>
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Please refer to the earlier blog - <a href="http://blog.csdn.net/j3oker" target="_blank">j3koer</a></div>
+                <div class="footer-develop-div">Reprint please indicate the source.</div>
+            </div>
+        </div>
+    <% } %>
+</footer>
