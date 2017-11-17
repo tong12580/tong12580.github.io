@@ -91,4 +91,3 @@ db.json
 node_modules/
 public/
 .deploy*/
-hexo-theme-material/
