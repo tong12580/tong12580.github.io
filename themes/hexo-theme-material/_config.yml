@@ -196,7 +196,7 @@ materialcdn:
 # Available value of "use":
 #     disqus | disqus_click | changyan | 163gentie
 comment:
-    use: disqus
+    use: disqus_click
     shortname: tong12580-github-io-jokers
     changyan_appid:
     changyan_conf:
