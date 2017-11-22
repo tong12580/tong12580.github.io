@@ -37,7 +37,7 @@ uiux:
     theme_color: "#0097A7"
     theme_sub_color: "#00838F"
     hyperlink_color: "#00838F"
-    button_color: "#757575"
+    button_color: "#212121"
     android_chrome_color: "#0097A7"
     nprogress_color: "#29d"
     nprogress_buffer: "800"
@@ -169,6 +169,10 @@ sidebar:
         时间轴:
             link: "/timeline"
             icon: timeline
+            divider: false
+        友情链接:
+            link: "/links"
+            icon: link
             divider: false
     article_num:
         use: false
