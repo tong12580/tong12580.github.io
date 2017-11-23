@@ -72,11 +72,11 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 feed:
-  type: atom
-  path: atom.xml
+  type: rss2
+  path: rss2.xml
   limit: 20
   hub: true
-  content:
+  content: true
   content_limit: 140
 ## Themes: https://hexo.io/themes/
 theme: hexo-theme-material

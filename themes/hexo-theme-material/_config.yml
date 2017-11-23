@@ -18,7 +18,7 @@ head:
 
 # Jump Links Settings
 url:
-    rss: "/atom.xml"
+    rss: "/rss2.xml"
     daily_pic: "#"
     logo: "http://blog.csdn.net/j3oker"
 
