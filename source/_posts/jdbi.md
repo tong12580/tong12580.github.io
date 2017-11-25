@@ -1,5 +1,4 @@
 title: JDBI -- 简介
-thumbnail: http://jdbi.org/images/logo.svg
 date: 2017/11/20 19:03:00
 tags: 
     - 翻译
