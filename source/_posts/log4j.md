@@ -3,8 +3,9 @@ date: 2016/06/11 20:32:00
 tags:
     - spring
     - log4j
+    - 日志
 categories:
-    - log4j
+    - 日志
 ---
 
   <br><p style="text-align:center;color:#123456;font-size:30px;">&nbsp;&nbsp;&nbsp;&nbsp;最近在搭载springMVC运行环境并配置Log4j时启动时，发现控制台报出如下警告：</p>
