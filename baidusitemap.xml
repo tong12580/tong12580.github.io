@@ -5,12 +5,14 @@
     
   <url>
     <loc>https://blog.futuredream.top/2016/06/12/log4j/</loc>
-    <lastmod>2017-11-25T18:59:43.000Z</lastmod>
+    <lastmod>2017-11-25T19:03:04.000Z</lastmod>
     <data>
         <display>
         <title>一个关于Log4j警告的解决办法</title>
         <pubTime>2016-06-11T20:32:00.000Z</pubTime>
         
+        <tag>日志</tag>
+         
         <tag>spring</tag>
          
         <tag>log4j</tag>
@@ -18,7 +20,7 @@
          
            
              
-              <breadCrumb title="log4j" url="https://blog.futuredream.top/categories/log4j/"/>
+              <breadCrumb title="日志" url="https://blog.futuredream.top/categories/%E6%97%A5%E5%BF%97/"/>
           
         </display>
     </data>
