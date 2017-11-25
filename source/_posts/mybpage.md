@@ -1,11 +1,11 @@
 title: MyBatis分页的拓展--合并高级查询
 date: 2016/03/08 21:29:00
 tags:
-    - MyEclipse
-    - github
-    - git
+    - page
+    - java
+    - myBatis
 categories:
-    - git
+    - myBatis
 ---
 
 ***MyBatis分页的拓展--合并查询***
