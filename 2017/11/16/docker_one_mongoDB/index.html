@@ -12,7 +12,7 @@
     
     <title>
         
-        分类: 游记 | 
+        JDBI -- 简介 | 
         
         Maxxice blog
     </title>
@@ -38,7 +38,7 @@
     <meta name="description" itemprop="description"
           content=" java springBoot springCloud ">
     <meta name="keywords"
-          content="j3koer,java,技术,SpringBoot,SpringCloud,mysql,前端,哲学,游记,旅行 ">
+          content="j3koer,java,技术,SpringBoot,SpringCloud,mysql,前端,哲学,游记,旅行  ,SQL  ,docker  ,MongoDB ">
 
     <!-- Site Verification -->
     
@@ -72,17 +72,26 @@
     <meta property="og:url" content="https://blog.futuredream.top">
     <meta property="og:type" content="blog">
     <meta property="og:title"
-          content=" 分类: 游记 |  Maxxice blog">
+          content=" JDBI -- 简介 |  Maxxice blog">
     <meta property="og:image" content="https://jokers-1252021562.file.myqcloud.com/images/E331245678.png"/>
     <meta property="og:description"
           content=" java springBoot springCloud ">
     
+    <meta property="og:article:tag" content="SQL">
+    
+    <meta property="og:article:tag" content="docker">
+    
+    <meta property="og:article:tag" content="MongoDB">
+    
 
+    
+    <meta property="article:published_time" content="11月 15, 2017"/>
+    <meta property="article:modified_time" content="11月 25, 2017"/>
     
 
     <!-- The Twitter Card protocol -->
     <meta name="twitter:title"
-          content=" 分类: 游记 |  Maxxice blog">
+          content=" JDBI -- 简介 |  Maxxice blog">
     <meta name="twitter:description"
           content=" java springBoot springCloud ">
     <meta name="twitter:image" content="https://jokers-1252021562.file.myqcloud.com/images/E331245678.png">
@@ -91,13 +100,43 @@
 
     <!-- Add canonical link for SEO -->
     
-    <link rel="canonical" href="https://blog.futuredream.top/categories/游记/index.html"/>
+    <link rel="canonical" href="https://blog.futuredream.top/2017/11/16/docker_one_mongoDB/index.html"/>
     
 
     <!-- Structured-data for SEO -->
     
     
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Maxxice blog",
+        "logo": "https://jokers-1252021562.file.myqcloud.com/images/E331245678.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "joker",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://jokers-1252021562.file.myqcloud.com/images/E331245678.png"
+        },
+        "description": "食得鹹魚抵得渴"
+    },
+    "headline": "JDBI -- 简介",
+    "url": "https://blog.futuredream.top/2017/11/16/docker_one_mongoDB/index.html",
+    "datePublished": "11月 15, 2017",
+    "dateModified": "11月 25, 2017",
+    "description": "java springBoot springCloud",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://blog.futuredream.top"
+    }
+}
+</script>
 
 
     
@@ -626,97 +665,325 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#简介"><span class="post-toc-number">1.</span> <span class="post-toc-text">简介</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#安装方法"><span class="post-toc-number">2.</span> <span class="post-toc-text">安装方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#附录"><span class="post-toc-number">3.</span> <span class="post-toc-text">附录</span></a></li></ol>
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         <!-- Custom Thumbnail -->
-        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50 lazy" data-original="https://jokers-1252021562.cosgz.myqcloud.com/images/taiWan/nuannuan.JPG">
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(https://raw.githubusercontent.com/docker-library/docs/01c12653951b2fe592c1f93a13b4e289ada0e3a1/mongo/logo.png)">
+    
+            <p class="article-headline-p">
+                JDBI -- 简介
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="https://jokers-1252021562.file.myqcloud.com/images/yu_head.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>joker</strong>
+        <span>11月 15, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
     
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/10/21/taiWan/">行者 · 台灣 一</a></p>
-    </div>
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/MongoDB/">MongoDB</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/SQL/">SQL</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/docker/">docker</a>
+    </ul>
+    
 
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-都可以随便，你说的，我都愿意去，小火车摆动的旋律。
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
 
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
 
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/10/21/taiWan/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="https://jokers-1252021562.file.myqcloud.com/images/yu_head.jpg" width="44px" height="44px" alt="joker's avatar">
-            </div>
-            <div>
-                <strong>joker</strong>
-                <span>10月 20, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/游记/">游记</a>
-            </span>
+    
 
-            
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=JDBI -- 简介&url=https://tong12580.github.io/2017/11/16/docker_one_mongoDB/index.html&pic=https://tong12580.github.iohttps://jokers-1252021562.file.myqcloud.com/images/E331245678.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
 
-            
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=JDBI -- 简介&url=https://tong12580.github.io/2017/11/16/docker_one_mongoDB/index.html&via=joker" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
 
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://tong12580.github.io/2017/11/16/docker_one_mongoDB/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://tong12580.github.io/2017/11/16/docker_one_mongoDB/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=https://tong12580.github.io/2017/11/16/docker_one_mongoDB/index.html&title=JDBI -- 简介" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 LinkedIn
+            </li>
+        </a>
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Maxxice blog&title=JDBI -- 简介&summary=java springBoot springCloud&pics=https://tong12580.github.iohttps://jokers-1252021562.file.myqcloud.com/images/E331245678.png&url=https://tong12580.github.io/2017/11/16/docker_one_mongoDB/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+        <a class="post_share-link" href="https://telegram.me/share/url?url=https://tong12580.github.io/2017/11/16/docker_one_mongoDB/index.html&text=JDBI -- 简介" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Telegram
+            </li>
+        </a>
+    
+</ul>
+
 </div>
 
-            
-            
-        
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p><img src="https://raw.githubusercontent.com/docker-library/docs/01c12653951b2fe592c1f93a13b4e289ada0e3a1/mongo/logo.png" alt="这里写图片描述"></p>
+<p>MongoDB（来自“humongous”）是一个跨平台的面向文档的数据库。作为一个NoSQL数据库，MongoDB避开了传统的基于表格的关系数据库结构，而采用动态模式的类似JSON的文档（MongoDB称为BSON格式），使得某些类型的应用程序中的数据集成更加方便快捷。MongoDB是GNU Affero通用公共许可证和Apache许可证的组合，是免费的开源软件。使用Docker安装单机版是比较快捷的办法。</p>
+<h4 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h4><p>安装办法如下：</p>
+<ul>
+<li>首先，可以打开docker hub 检索mongoDB,搜索你喜欢的MongoDB条目。像我就倾向选择 official 版本，便于拓展或后续操作。</li>
+</ul>
+<p><img src="http://img.blog.csdn.net/20171115093620364?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSjNva2Vy/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<ul>
+<li>使用 <code>docker pull mongo</code> 来拉取一个docker镜像</li>
+<li><p>使用密码启动服务 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run --name mongo -p 27017:27017 -v /home/data/mongodb/data(映射为自己的DB数据文件存储位置):/data/db -d mongo --auth</div></pre></td></tr></table></figure>
+</li>
+<li><p>启动之后 <code>docker exec -it some-mongo mongo admin</code> 连接至admin 来添加初始管理员用户，创建数据库，已经赋予权限。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; db.createUser(&#123; user: &apos;jsmith&apos;, pwd: &apos;some-initial-password&apos;, roles: [ &#123; role: &quot;userAdminAnyDatabase&quot;, db: &quot;admin&quot; &#125; ] &#125;);(创建 admin用户) </div><div class="line">&gt; db.createUser(&#123;user:&apos;&apos;,pwd:&apos;root&apos;,roles:[&#123; role:&apos;root&apos;,db: &apos;admin&apos;&#125;]&#125;) 创建root用户</div><div class="line">&gt; db.auth(“用户名”,”密码”)给admin账户授权</div><div class="line">&gt; use octblog 数据库</div><div class="line">&gt; db.createUser(&#123;user: &quot;gevin&quot;,pwd: &quot;gevin&quot;,</div><div class="line">  roles: [ &#123; role: &quot;readWrite&quot;, db: &quot;octblog&quot;&#125;,&#123; role: &quot;readWrite&quot;, db: &quot;octblog-log&quot; &#125; ] &#125;)创建普通读写用户</div></pre></td></tr></table></figure>
+<ul>
+<li>这样就可以通过外部访问数据库了</li>
+</ul>
+<h4 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h4><p>MongoDB 权限说明</p>
+<p>　　a MongoDB内置角色官网文档介绍：<a href="http://docs.mongoing.com/manual-zh/reference/built-in-roles.html" target="_blank" rel="noopener">http://docs.mongoing.com/manual-zh/reference/built-in-roles.html</a><br>　　b 关于MongoDB的内置角色，我们大概可以分为以下几种来简单说一下<br>　　　　b.1 Database User Roles(数据库用户角色)：read、readWrite<br>　　　　b.2 Database Administration Roles(数据库管理角色)：dbAdmin、dbOwner、userAdmin<br>　　　　b.3 Culster Administration Roles(管理员组，针对整个系统进行管理)：clusterAdmin、clusterManager、clusterMonitor、hostManager<br>　　　　b.4 Backup and Restoration Roles(备份还原角色组)：backup、restore<br>　　　　b.5 All-Database Roles(所有数据库角色)：readAnyDatabase、readWriteAnyDatabase、userAdminAnyDatabase、dbAdminAnyDatabase<br>　　　　b.6 Superuser Roles(超级管理员)：root、(dbOwner、userAdmin、userAdminAnyDatabase这几个角色角色提供了任何数据任何用户的任何权限的能力，拥有这个角色的用户可以在任何数据库上定义它们自己的权限)<br>　　　　b.7  Internal Role(内部角色，一般情况下不建议设置)：__system<br>　　c 关于上面每一个角色的意义是什么，请自行去官网或者这篇文章去查看，地址是：<a href="http://www.cnblogs.com/SamOk/p/5162767.html" target="_blank" rel="noopener">http://www.cnblogs.com/SamOk/p/5162767.html</a></p>
+
     
 
     
+</div>
 
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
 
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
+                
 
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
-    $('.post_thumbnail-random').addClass('lazy');
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
 
-        locatePost = locatePost.next();
-    }
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #212121;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load"> 
+    <button class="disqus_click_btn">阅读评论（请确保 disqus 可以正常加载）</button>
+</div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://blog.futuredream.top/2017/11/16/docker_one_mongoDB/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://blog.futuredream.top/2017/11/16/docker_one_mongoDB/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
 </script>
 
-    
+<script type="text/ls-javascript" id="disqus-lazy-load-script">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//tong12580-github-io-jokers.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+  	
+
 </div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2017/11/21/jdbi/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/11/14/education/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     

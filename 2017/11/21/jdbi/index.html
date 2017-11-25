@@ -12,7 +12,7 @@
     
     <title>
         
-        分类: 游记 | 
+        JDBI -- 简介 | 
         
         Maxxice blog
     </title>
@@ -38,7 +38,7 @@
     <meta name="description" itemprop="description"
           content=" java springBoot springCloud ">
     <meta name="keywords"
-          content="j3koer,java,技术,SpringBoot,SpringCloud,mysql,前端,哲学,游记,旅行 ">
+          content="j3koer,java,技术,SpringBoot,SpringCloud,mysql,前端,哲学,游记,旅行  ,翻译  ,SQL  ,java ">
 
     <!-- Site Verification -->
     
@@ -72,17 +72,26 @@
     <meta property="og:url" content="https://blog.futuredream.top">
     <meta property="og:type" content="blog">
     <meta property="og:title"
-          content=" 分类: 游记 |  Maxxice blog">
+          content=" JDBI -- 简介 |  Maxxice blog">
     <meta property="og:image" content="https://jokers-1252021562.file.myqcloud.com/images/E331245678.png"/>
     <meta property="og:description"
           content=" java springBoot springCloud ">
     
+    <meta property="og:article:tag" content="翻译">
+    
+    <meta property="og:article:tag" content="SQL">
+    
+    <meta property="og:article:tag" content="java">
+    
 
+    
+    <meta property="article:published_time" content="11月 20, 2017"/>
+    <meta property="article:modified_time" content="11月 25, 2017"/>
     
 
     <!-- The Twitter Card protocol -->
     <meta name="twitter:title"
-          content=" 分类: 游记 |  Maxxice blog">
+          content=" JDBI -- 简介 |  Maxxice blog">
     <meta name="twitter:description"
           content=" java springBoot springCloud ">
     <meta name="twitter:image" content="https://jokers-1252021562.file.myqcloud.com/images/E331245678.png">
@@ -91,13 +100,43 @@
 
     <!-- Add canonical link for SEO -->
     
-    <link rel="canonical" href="https://blog.futuredream.top/categories/游记/index.html"/>
+    <link rel="canonical" href="https://blog.futuredream.top/2017/11/21/jdbi/index.html"/>
     
 
     <!-- Structured-data for SEO -->
     
     
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Maxxice blog",
+        "logo": "https://jokers-1252021562.file.myqcloud.com/images/E331245678.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "joker",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://jokers-1252021562.file.myqcloud.com/images/E331245678.png"
+        },
+        "description": "食得鹹魚抵得渴"
+    },
+    "headline": "JDBI -- 简介",
+    "url": "https://blog.futuredream.top/2017/11/21/jdbi/index.html",
+    "datePublished": "11月 20, 2017",
+    "dateModified": "11月 25, 2017",
+    "description": "java springBoot springCloud",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://blog.futuredream.top"
+    }
+}
+</script>
 
 
     
@@ -626,97 +665,316 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五分钟介绍"><span class="post-toc-number">1.</span> <span class="post-toc-text">五分钟介绍</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#流式风格的API"><span class="post-toc-number">2.</span> <span class="post-toc-text">流式风格的API</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#SQL对象风格的API"><span class="post-toc-number">3.</span> <span class="post-toc-text">SQL对象风格的API</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#获取JDBI"><span class="post-toc-number">4.</span> <span class="post-toc-text">获取JDBI</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#下载Jar"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">下载Jar</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#源代码"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">源代码</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#邮件列表"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">邮件列表</span></a></li></ol></li></ol>
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         <!-- Custom Thumbnail -->
-        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50 lazy" data-original="https://jokers-1252021562.cosgz.myqcloud.com/images/taiWan/nuannuan.JPG">
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(http://jdbi.org/images/logo.svg)">
+    
+            <p class="article-headline-p">
+                JDBI -- 简介
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="https://jokers-1252021562.file.myqcloud.com/images/yu_head.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>joker</strong>
+        <span>11月 20, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
     
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/10/21/taiWan/">行者 · 台灣 一</a></p>
-    </div>
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/SQL/">SQL</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/java/">java</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/翻译/">翻译</a>
+    </ul>
+    
 
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-都可以随便，你说的，我都愿意去，小火车摆动的旋律。
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
 
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
 
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/10/21/taiWan/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="https://jokers-1252021562.file.myqcloud.com/images/yu_head.jpg" width="44px" height="44px" alt="joker's avatar">
-            </div>
-            <div>
-                <strong>joker</strong>
-                <span>10月 20, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/游记/">游记</a>
-            </span>
+    
 
-            
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=JDBI -- 简介&url=https://tong12580.github.io/2017/11/21/jdbi/index.html&pic=https://tong12580.github.iohttps://jokers-1252021562.file.myqcloud.com/images/E331245678.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
 
-            
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=JDBI -- 简介&url=https://tong12580.github.io/2017/11/21/jdbi/index.html&via=joker" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
 
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://tong12580.github.io/2017/11/21/jdbi/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://tong12580.github.io/2017/11/21/jdbi/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=https://tong12580.github.io/2017/11/21/jdbi/index.html&title=JDBI -- 简介" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 LinkedIn
+            </li>
+        </a>
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Maxxice blog&title=JDBI -- 简介&summary=java springBoot springCloud&pics=https://tong12580.github.iohttps://jokers-1252021562.file.myqcloud.com/images/E331245678.png&url=https://tong12580.github.io/2017/11/21/jdbi/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+        <a class="post_share-link" href="https://telegram.me/share/url?url=https://tong12580.github.io/2017/11/21/jdbi/index.html&text=JDBI -- 简介" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Telegram
+            </li>
+        </a>
+    
+</ul>
+
 </div>
 
-            
-            
-        
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h3 id="五分钟介绍"><a href="#五分钟介绍" class="headerlink" title="五分钟介绍"></a>五分钟介绍</h3><p>JDBI是Java的SQL连接处理的便利工具库。它试图以Java中使用集合，bean等来映射关系来访问关系数据库，同时保持与JDBC相同的粒度。它公开了两种不同风格的API，一种流式风格和一种sql对象风格。</p>
+<h3 id="流式风格的API"><a href="#流式风格的API" class="headerlink" title="流式风格的API"></a>流式风格的API</h3><p>流式风格API 如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// using in-memory H2 database</span></div><div class="line">DataSource ds = JdbcConnectionPool.create(<span class="string">"jdbc:h2:mem:test"</span>,</div><div class="line">                                          <span class="string">"username"</span>,</div><div class="line">                                          <span class="string">"password"</span>);</div><div class="line">DBI dbi = <span class="keyword">new</span> DBI(ds);</div><div class="line">Handle h = dbi.open();</div><div class="line">h.execute(<span class="string">"create table something (id int primary key, name varchar(100))"</span>);</div><div class="line"></div><div class="line">h.execute(<span class="string">"insert into something (id, name) values (?, ?)"</span>, <span class="number">1</span>, <span class="string">"Brian"</span>);</div><div class="line"></div><div class="line">String name = h.createQuery(<span class="string">"select name from something where id = :id"</span>)</div><div class="line">                    .bind(<span class="string">"id"</span>, <span class="number">1</span>)</div><div class="line">                    .map(StringMapper.FIRST)</div><div class="line">                    .first();</div><div class="line">                    </div><div class="line">assertThat(name, equalTo(<span class="string">"Brian"</span>));</div><div class="line"></div><div class="line">h.close();</div></pre></td></tr></table></figure>
+<p>DBI对象类似于JDBC数据源，并且通常通过传递JDBC数据源来构造。有参构造函数采取JDBC URL和证书，以及其他手段（密码）。从DBI实例获得Handle实例。Handle表示到数据库的单个连接。Handles处理器们依赖于底层的JDBC连接对象。</p>
+<p>使用处理器Handles，您可以创建和执行语句，查询，调用，批处理或准备好的批处理。在上面的例子中，我们执行一个语句来创建一个表。执行另一个SQL语句时使用两个占位符参数来插入值。最后，我们构造一个查询，将一个值绑定到查询中的命名参数，将结果映射为String类型，并采取回来的第一个结果。</p>
+<p>创建和查询的命名参数设施由JDBI提供，它在实际构建准备好的语句时解析出SQL并使用位置参数。上面的例子使用默认的冒号做分隔器，但也可以使用问号做分割器。其语法类比于使用冒号的数据库，比如PostgreSQL。</p>
+<h3 id="SQL对象风格的API"><a href="#SQL对象风格的API" class="headerlink" title="SQL对象风格的API"></a>SQL对象风格的API</h3><p>第二种，SQL对象风格API简化了创建DAO对象的常见方式，在该方法中，单个方法映射到单个语句。SQL对象定义是一个带注释的接口，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">public interface MyDAO</div><div class="line">&#123;</div><div class="line">  @SqlUpdate(&quot;create table something (id int primary key, name varchar(100))&quot;)</div><div class="line">  void createSomethingTable();</div><div class="line"></div><div class="line">  @SqlUpdate(&quot;insert into something (id, name) values (:id, :name)&quot;)</div><div class="line">  void insert(@Bind(&quot;id&quot;) int id, @Bind(&quot;name&quot;) String name);</div><div class="line"></div><div class="line">  @SqlQuery(&quot;select name from something where id = :id&quot;)</div><div class="line">  String findNameById(@Bind(&quot;id&quot;) int id);</div><div class="line"></div><div class="line">  /**</div><div class="line">   * close with no args is used to close the connection</div><div class="line">   */</div><div class="line">  void close();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个接口定义了两个更新语句，其中创建与api示例中相同的创建表相同，第二个更新执行相同的插入，第三个定义查询。在后面的两个例子中，注意使用绑定限制符来对应相应的参数。</p>
+<p>最后的方法close（）是特殊的。当它被调用时，它将关闭底层的JDBC连接。该方法可能被声明为引发异常，例如close（）方法在java.io.Closeable上执行，使其适用于Java 7中的自动资源管理。</p>
+<p>为了使用这个sql对象定义，我们使用这样的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// using in-memory H2 database via a pooled DataSource</div><div class="line">JdbcConnectionPool ds = JdbcConnectionPool.create(&quot;jdbc:h2:mem:test2&quot;,</div><div class="line">                                                  &quot;username&quot;,</div><div class="line">                                                  &quot;password&quot;);</div><div class="line">DBI dbi = new DBI(ds);</div><div class="line"></div><div class="line">MyDAO dao = dbi.open(MyDAO.class);</div><div class="line"></div><div class="line">dao.createSomethingTable();</div><div class="line"></div><div class="line">dao.insert(2, &quot;Aaron&quot;);</div><div class="line"></div><div class="line">String name = dao.findNameById(2);</div><div class="line"></div><div class="line">assertThat(name, equalTo(&quot;Aaron&quot;));</div><div class="line"></div><div class="line">dao.close();</div><div class="line">ds.dispose();</div></pre></td></tr></table></figure>
+<p>我们从DBI实例中获得一个sql对象的实例，然后调用它的方法。这里有几种不同的方式创建sql对象实例。这里的一个将对象绑定到一个特定的处理器中，所以我们需要确保在完成对象时关闭对象。</p>
+<h3 id="获取JDBI"><a href="#获取JDBI" class="headerlink" title="获取JDBI"></a>获取JDBI</h3><p>JDBI是根据Apache许可证2.0许可的，没有额外的运行时依赖性。</p>
+<p>Maven的<br>要在基于Apache Maven的项目中使用JDBI ，添加它是一个依赖项：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.jdbi<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jdbi<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;jdbi.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>您可以在<a href="http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22jdbi%22" target="_blank" rel="noopener">Maven Central</a>中找到最新版本的JDBI 。</p>
+<h4 id="下载Jar"><a href="#下载Jar" class="headerlink" title="下载Jar"></a>下载Jar</h4><p>JDBI发布jar文件可以从<a href="http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22jdbi%22" target="_blank" rel="noopener">Maven Central</a>获得。</p>
+<h4 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h4><p>JDBI的主要存储库位于Github上，网址为<a href="http://github.com/brianm/jdbi/" target="_blank" rel="noopener">http://github.com/brianm/jdbi/</a></p>
+<h4 id="邮件列表"><a href="#邮件列表" class="headerlink" title="邮件列表"></a>邮件列表</h4><p>JDBI的邮件列表以<a href="https://groups.google.com/group/jdbi上的Google" target="_blank" rel="noopener">https://groups.google.com/group/jdbi上的Google</a> Group托管</p>
+
     
 
     
+</div>
 
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
 
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
+                
 
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
-    $('.post_thumbnail-random').addClass('lazy');
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
 
-        locatePost = locatePost.next();
-    }
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #212121;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load"> 
+    <button class="disqus_click_btn">阅读评论（请确保 disqus 可以正常加载）</button>
+</div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://blog.futuredream.top/2017/11/21/jdbi/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://blog.futuredream.top/2017/11/21/jdbi/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
 </script>
 
-    
+<script type="text/ls-javascript" id="disqus-lazy-load-script">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//tong12580-github-io-jokers.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+  	
+
 </div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/11/16/docker_one_mongoDB/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     

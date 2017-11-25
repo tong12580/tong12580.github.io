@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   <link href="true" rel="hub"/>
   <link href="https://blog.futuredream.top/"/>
-  <updated>2017-11-21T13:54:53.000Z</updated>
+  <updated>2017-11-25T15:43:39.000Z</updated>
   <id>https://blog.futuredream.top/</id>
   
   <author>
@@ -15,6 +15,60 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JDBI -- 简介</title>
+    <link href="https://blog.futuredream.top/2017/11/21/jdbi/"/>
+    <id>https://blog.futuredream.top/2017/11/21/jdbi/</id>
+    <published>2017-11-20T19:03:00.000Z</published>
+    <updated>2017-11-25T15:43:39.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;五分钟介绍&quot;&gt;&lt;a href=&quot;#五分钟介绍&quot; class=&quot;headerlink&quot; title=&quot;五分钟介绍&quot;&gt;&lt;/a&gt;五分钟介绍&lt;/h3&gt;&lt;p&gt;JDBI是Java的SQL连接处理的便利工具库。它试图以Java中使用集合，bean等来映射关系来访问关系数据库，同
+      
+    
+    </summary>
+    
+      <category term="数据库" scheme="https://blog.futuredream.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="翻译" scheme="https://blog.futuredream.top/tags/%E7%BF%BB%E8%AF%91/"/>
+    
+      <category term="SQL" scheme="https://blog.futuredream.top/tags/SQL/"/>
+    
+      <category term="java" scheme="https://blog.futuredream.top/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JDBI -- 简介</title>
+    <link href="https://blog.futuredream.top/2017/11/16/docker_one_mongoDB/"/>
+    <id>https://blog.futuredream.top/2017/11/16/docker_one_mongoDB/</id>
+    <published>2017-11-15T19:20:00.000Z</published>
+    <updated>2017-11-25T15:46:22.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/docker-library/docs/01c126
+      
+    
+    </summary>
+    
+      <category term="数据库" scheme="https://blog.futuredream.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="SQL" scheme="https://blog.futuredream.top/tags/SQL/"/>
+    
+      <category term="docker" scheme="https://blog.futuredream.top/tags/docker/"/>
+    
+      <category term="MongoDB" scheme="https://blog.futuredream.top/tags/MongoDB/"/>
+    
+  </entry>
   
   <entry>
     <title>格局与视野 -- 工作篇</title>
