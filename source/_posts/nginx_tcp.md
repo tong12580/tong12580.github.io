@@ -1,5 +1,5 @@
 title: nginx代理TCP模块
-thumbnail: https://i.v2ex.co/2Zo3bPa3.png
+thumbnail: https://jokers-1252021562.cosgz.myqcloud.com/images/technology/timg1.jpeg
 date: 2017/06/28 09:30:00
 tags:
     - tcp
