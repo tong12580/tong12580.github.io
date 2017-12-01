@@ -174,5 +174,5 @@ process scheduler是Linux kernel中最重要的子系统。系统通过它来控
 
 > 声明：本文翻译自Conceptual Architecture of the Linux Kernel
 
->本文链接： http://www.javadu.site/2017/11/05/Conceptional-Architecture-of-Linux/
+> 本文链接： http://www.javadu.site/2017/11/05/Conceptional-Architecture-of-Linux/
 > 版权声明： 本文章采用 CC BY 4.0 CN协议
