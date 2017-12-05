@@ -26,9 +26,81 @@ categories:
     <span>图1-代理初始化与访问查询时序图</span>
 </p>
 
-角色  | 作用
----   | ---
-user|
+ 角色  | 作用
+|: ---:|: --- :|
+user | 用户, 代理类的使用者，命令发出者
+DBProxy| 数据库代理
+DBQuery| 数据访问实体
+
+当用户刚启用服务时，因为并没有真实访问数据库，所以只初始化了数据代理服务，并没有建立数据库连接，减少因建立连接而产生的等待时间。这样是非常快捷并节约资源的。当用户需要数据时，此时用户访问代理，由代理去构建数据访问实例，得到结果并返回给用户。在此过程中，由于是代理去寻找数据资源，而用户并不知道真实资源是从谁那里得到的，因此，更加安全。
+
+
+## 构建一个简单的代理
+
+基于以上设计，我们来构建一个简单的代理; 首先，我们构造一个数据查询接口如下：
+
+```java
+
+public interface IDBQuery {
+    String request();
+}
+
+```
+
+然后，我们构建一个重量级的实现，来模拟其中的数据资源加载，网络请求等待：
+
+```java
+
+public class DBQuery implements IDBQuery {
+    
+    public DBQuery() {
+        try{
+            Thread.sleep(1000);
+        } catch (InterruptedException ignore) {}
+    }
+    
+    @Override
+    public String request() {
+        return "hello!";
+    }
+}
+
+```
+
+再来，我们构建一个快捷的访问代理，同时实现该数据查询接口：
+
+```java
+
+public class DBProxy implements IDBQuery {
+    private DBQuery query = null;
+    
+    @Override
+    public String request() {
+        if (null == query) {
+            query = new DBProxy();
+        }
+       return query.request();
+    }
+}
+
+```
+
+我们用一个main函数来模拟软件初始化，以及用户访问的过程：
+
+```java
+
+public class User {
+    
+    private static IDBQuery  idbQuery = new DBProxy();//软件初始化，先加载代理。
+    
+    public static void main(String[] args){
+      idbQuery.request();//用户真正访问时，创建真实数据访问对象。
+    }
+}
+
+```
+
+此实例能较为直观的反应代理的延迟加载作用和机制。当然在java中更多的使用了类似CGLIB，代理工厂等来动态加载代理类，来做到运行时加载，提供系统效率。后面将会慢慢分解。
 
 <style type="text/css">
     p {
