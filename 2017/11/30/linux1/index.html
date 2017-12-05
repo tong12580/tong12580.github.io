@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.4.0 -->
+    <script>window.materialVersion = "1.4.0"</script>
+
+    <!-- Title -->
+    
+    <title>
+        
+        【译】Linux概念架构 | 
+        
+        Maxxice blog
+    </title>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="joker">
+    <meta name="description" itemprop="description"
+          content=" java springBoot springCloud ">
+    <meta name="keywords"
+          content="j3koer,java,技术,SpringBoot,SpringCloud,mysql,前端,哲学,游记,旅行  ,架构  ,linux ">
+
+    <!-- Site Verification -->
+    
+    <meta name="google-site-verification" content="GR9LU1RCbNSfL3w3qoJGY5AiJDOMzPnbEKxP-GyzcZo"/>
+    
+    
+    <meta name="baidu-site-verification" content="aTPMu0Yaic"/>
+    
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="https://jokers-1252021562.file.myqcloud.com/images/E331245678.png">
+    <link rel="icon" sizes="192x192" href="https://jokers-1252021562.file.myqcloud.com/images/E331245678.png">
+    <link rel="apple-touch-icon" href="https://jokers-1252021562.file.myqcloud.com/images/E331245678.png">
+
+    <!--iOS -->
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Maxxice blog">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="https://blog.futuredream.top">
+    <meta property="og:type" content="blog">
+    <meta property="og:title"
+          content=" 【译】Linux概念架构 |  Maxxice blog">
+    <meta property="og:image" content="https://jokers-1252021562.file.myqcloud.com/images/E331245678.png"/>
+    <meta property="og:description"
+          content=" java springBoot springCloud ">
+    
+    <meta property="og:article:tag" content="架构">
+    
+    <meta property="og:article:tag" content="linux">
+    
+
+    
+    <meta property="article:published_time" content="11月 29, 2017"/>
+    <meta property="article:modified_time" content="12月 05, 2017"/>
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:title"
+          content=" 【译】Linux概念架构 |  Maxxice blog">
+    <meta name="twitter:description"
+          content=" java springBoot springCloud ">
+    <meta name="twitter:image" content="https://jokers-1252021562.file.myqcloud.com/images/E331245678.png">
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:url" content="https://blog.futuredream.top"/>
+
+    <!-- Add canonical link for SEO -->
+    
+    <link rel="canonical" href="https://blog.futuredream.top/2017/11/30/linux1/index.html"/>
+    
+
+    <!-- Structured-data for SEO -->
+    
+    
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Maxxice blog",
+        "logo": "https://jokers-1252021562.file.myqcloud.com/images/E331245678.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "joker",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://jokers-1252021562.file.myqcloud.com/images/E331245678.png"
+        },
+        "description": "食得鹹魚抵得渴"
+    },
+    "headline": "【译】Linux概念架构",
+    "url": "https://blog.futuredream.top/2017/11/30/linux1/index.html",
+    "datePublished": "11月 29, 2017",
+    "dateModified": "12月 05, 2017",
+    "description": "java springBoot springCloud",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://blog.futuredream.top"
+    }
+}
+</script>
+
+
+    
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="/css/ie-blocker.css">
+
+    
+    <script src="/js/ie-blocker.zhCN.js"></script>
+    
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function() {
+            window.lsloader = { jsRunSequence: [], jsnamemap: {}, cssnamemap: {} };
+            lsloader.removeLS = function(key) {
+                try {
+                    localStorage.removeItem(key)
+                } catch (e) {
+                }
+            };
+            lsloader.setLS = function(key, val) {
+                try {
+                    localStorage.setItem(key, val)
+                } catch (e) {
+                }
+            };
+            lsloader.getLS = function(key) {
+                var val = "";
+                try {
+                    val = localStorage.getItem(key)
+                } catch (e) {
+                    val = ""
+                }
+                return val
+            };
+            versionString = "/*" + materialVersion + "*/";
+            lsloader.clean = function() {
+                try {
+                    var keys = [];
+                    for (var i = 0; i < localStorage.length; i++) {
+                        keys.push(localStorage.key(i))
+                    }
+                    keys.forEach(function(key) {
+                        var data = lsloader.getLS(key);
+                        if (data && data.indexOf(versionString) === -1) {
+                            lsloader.removeLS(key)
+                        }
+                    })
+                } catch (e) {
+                }
+            };
+            lsloader.clean();
+            lsloader.load = function(jsname, jspath, cssonload) {
+                cssonload = cssonload || function() {
+                    };
+                var code;
+                code = this.getLS(jsname);
+                if (code && code.indexOf(versionString) === -1) {
+                    this.removeLS(jsname);
+                    this.requestResource(jsname, jspath, cssonload);
+                    return
+                }
+                if (code) {
+                    var versionNumber = code.split(versionString)[0];
+                    if (versionNumber != jspath) {
+                        console.log("reload:" + jspath);
+                        this.removeLS(jsname);
+                        this.requestResource(jsname, jspath, cssonload);
+                        return
+                    }
+                    code = code.split(versionString)[1];
+                    if (/\.js?.+$/.test(versionNumber)) {
+                        this.jsRunSequence.push({ name: jsname, code: code });
+                        this.runjs(jspath, jsname, code)
+                    } else {
+                        document.getElementById(jsname).appendChild(document.createTextNode(code));
+                        cssonload()
+                    }
+                } else {
+                    this.requestResource(jsname, jspath, cssonload)
+                }
+            };
+            lsloader.requestResource = function(name, path, cssonload) {
+                var that = this;
+                if (/\.js?.+$/.test(path)) {
+                    this.iojs(path, name, function(path, name, code) {
+                        that.setLS(name, path + versionString + code);
+                        that.runjs(path, name, code)
+                    })
+                } else if (/\.css?.+$/.test(path)) {
+                    this.iocss(path, name, function(code) {
+                        document.getElementById(name).appendChild(document.createTextNode(code));
+                        that.setLS(name, path + versionString + code)
+                    }, cssonload)
+                }
+            };
+            lsloader.iojs = function(path, jsname, callback) {
+                var that = this;
+                that.jsRunSequence.push({ name: jsname, code: "" });
+                try {
+                    var xhr = new XMLHttpRequest;
+                    xhr.open("get", path, true);
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState == 4) {
+                            if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
+                                if (xhr.response != "") {
+                                    callback(path, jsname, xhr.response);
+                                    return
+                                }
+                            }
+                            that.jsfallback(path, jsname)
+                        }
+                    };
+                    xhr.send(null)
+                } catch (e) {
+                    that.jsfallback(path, jsname)
+                }
+            };
+            lsloader.iocss = function(path, jsname, callback, cssonload) {
+                var that = this;
+                try {
+                    var xhr = new XMLHttpRequest;
+                    xhr.open("get", path, true);
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState == 4) {
+                            if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
+                                if (xhr.response != "") {
+                                    callback(xhr.response);
+                                    cssonload();
+                                    return
+                                }
+                            }
+                            that.cssfallback(path, jsname, cssonload)
+                        }
+                    };
+                    xhr.send(null)
+                } catch (e) {
+                    that.cssfallback(path, jsname, cssonload)
+                }
+            };
+            lsloader.iofonts = function(path, jsname, callback, cssonload) {
+                var that = this;
+                try {
+                    var xhr = new XMLHttpRequest;
+                    xhr.open("get", path, true);
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState == 4) {
+                            if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
+                                if (xhr.response != "") {
+                                    callback(xhr.response);
+                                    cssonload();
+                                    return
+                                }
+                            }
+                            that.cssfallback(path, jsname, cssonload)
+                        }
+                    };
+                    xhr.send(null)
+                } catch (e) {
+                    that.cssfallback(path, jsname, cssonload)
+                }
+            };
+            lsloader.runjs = function(path, name, code) {
+                if (!!name && !!code) {
+                    for (var k in this.jsRunSequence) {
+                        if (this.jsRunSequence[k].name == name) {
+                            this.jsRunSequence[k].code = code
+                        }
+                    }
+                }
+                if (!!this.jsRunSequence[0] && !!this.jsRunSequence[0].code && this.jsRunSequence[0].status != "failed") {
+                    var script = document.createElement("script");
+                    script.appendChild(document.createTextNode(this.jsRunSequence[0].code));
+                    script.type = "text/javascript";
+                    document.getElementsByTagName("head")[0].appendChild(script);
+                    this.jsRunSequence.shift();
+                    if (this.jsRunSequence.length > 0) {
+                        this.runjs()
+                    }
+                } else if (!!this.jsRunSequence[0] && this.jsRunSequence[0].status == "failed") {
+                    var that = this;
+                    var script = document.createElement("script");
+                    script.src = this.jsRunSequence[0].path;
+                    script.type = "text/javascript";
+                    this.jsRunSequence[0].status = "loading";
+                    script.onload = function() {
+                        that.jsRunSequence.shift();
+                        if (that.jsRunSequence.length > 0) {
+                            that.runjs()
+                        }
+                    };
+                    document.body.appendChild(script)
+                }
+            };
+            lsloader.tagLoad = function(path, name) {
+                this.jsRunSequence.push({ name: name, code: "", path: path, status: "failed" });
+                this.runjs()
+            };
+            lsloader.jsfallback = function(path, name) {
+                if (!!this.jsnamemap[name]) {
+                    return
+                } else {
+                    this.jsnamemap[name] = name
+                }
+                for (var k in this.jsRunSequence) {
+                    if (this.jsRunSequence[k].name == name) {
+                        this.jsRunSequence[k].code = "";
+                        this.jsRunSequence[k].status = "failed";
+                        this.jsRunSequence[k].path = path
+                    }
+                }
+                this.runjs()
+            };
+            lsloader.cssfallback = function(path, name, cssonload) {
+                if (!!this.cssnamemap[name]) {
+                    return
+                } else {
+                    this.cssnamemap[name] = 1
+                }
+                var link = document.createElement("link");
+                link.type = "text/css";
+                link.href = path;
+                link.rel = "stylesheet";
+                link.onload = link.onerror = cssonload;
+                var root = document.getElementsByTagName("script")[0];
+                root.parentNode.insertBefore(link, root)
+            };
+            lsloader.runInlineScript = function(scriptId, codeId) {
+                var code = document.getElementById(codeId).innerText;
+                this.jsRunSequence.push({ name: scriptId, code: code });
+                this.runjs()
+            };
+            lsloader.loadCombo = function(jslist) {
+                var updateList = "";
+                var requestingModules = {};
+                for (var k in jslist) {
+                    var LS = this.getLS(jslist[k].name);
+                    if (!!LS) {
+                        var version = LS.split(versionString)[0];
+                        var code = LS.split(versionString)[1]
+                    } else {
+                        var version = ""
+                    }
+                    if (version === jslist[k].path) {
+                        this.jsRunSequence.push({
+                            name: jslist[k].name,
+                            code: code,
+                            path: jslist[k].path
+                        })
+                    } else {
+                        this.jsRunSequence.push({
+                            name: jslist[k].name,
+                            code: null,
+                            path: jslist[k].path,
+                            status: "comboloading"
+                        });
+                        requestingModules[jslist[k].name] = true;
+                        updateList += (updateList == "" ? "" : ";") + jslist[k].path
+                    }
+                }
+                var that = this;
+                if (!!updateList) {
+                    var xhr = new XMLHttpRequest;
+                    xhr.open("get", combo + updateList, true);
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState == 4) {
+                            if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
+                                if (xhr.response != "") {
+                                    that.runCombo(xhr.response, requestingModules);
+                                    return
+                                }
+                            } else {
+                                for (var i in that.jsRunSequence) {
+                                    if (requestingModules[that.jsRunSequence[i].name]) {
+                                        that.jsRunSequence[i].status = "failed"
+                                    }
+                                }
+                                that.runjs()
+                            }
+                        }
+                    };
+                    xhr.send(null)
+                }
+                this.runjs()
+            };
+            lsloader.runCombo = function(comboCode, requestingModules) {
+                comboCode = comboCode.split("/*combojs*/");
+                comboCode.shift();
+                for (var k in this.jsRunSequence) {
+                    if (!!requestingModules[this.jsRunSequence[k].name] && !!comboCode[0]) {
+                        this.jsRunSequence[k].status = "comboJS";
+                        this.jsRunSequence[k].code = comboCode[0];
+                        this.setLS(this.jsRunSequence[k].name, this.jsRunSequence[k].path + versionString + comboCode[0]);
+                        comboCode.shift()
+                    }
+                }
+                this.runjs()
+            }
+        })();</script>
+
+    <!-- Import CSS & jQuery -->
+    
+    <style id="css/material.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/material.min.css","/css/material.min.css?fJTiM/K1J3dWIruo3pxtAw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+    <style id="css/style.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/style.min.css","/css/style.min.css?oCSEO3ST+aEypEwttTDI9g==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+    
+    
+    <style>
+    
+    .footer-sns-facebook {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgY2xhc3M9Imljb24iIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxwYXRoIGQ9Ik0xMzguNiA3OGMtMjIuNCA1LjItNTUuOCA0MC4yLTYwLjYgNjMuNC0xLjQgNi40LTIgMTI5LjgtMS42IDM2Ny42LjYgMjk4LjYgMSAzNTguOCAzLjQgMzYzIDExIDIwLjIgMjEuNiAzMi40IDM3LjIgNDMgMTUgMTAuMiAxNy40IDExLjIgMzMgMTMgMTEuMiAxLjQgMTM2IDIgMzY1IDEuNiAzMTQtLjYgMzQ4LjYtMSAzNTUtMy44IDE1LjgtNy4yIDMzLjgtMjIgNDMuMi0zNS40IDUuMi03LjQgMTAuOC0xNi42IDEyLjYtMjAuNCAyLjgtNi40IDMuMi00MC44IDMuOC0zNTQgLjQtMjIzLS4yLTM1My40LTEuNC0zNjUtMi0xNy0yLjYtMTguNi0xMy0zNC04LjYtMTIuNi0xNC4yLTE4LjQtMjUuMi0yNS44LTcuOC01LjQtMTcuNC0xMS0yMS42LTEyLjQtNi0yLjItNzIuOC0yLjYtMzY1LjQtMi42LTE5Ni44LjItMzYxIC44LTM2NC40IDEuOHptNjU3LjYgODcuOGw0LjggMy44djU1LjJjMCA1NC42IDAgNTUuMi00LjYgNTkuNi00LjQgNC40LTYgNC42LTUwLjIgNS42bC00NS42IDEtNy4yIDUuNmMtMTAuNCA4LTE2LjggMTcuMi0xOS4yIDI3LjQtMSA1LTEuOCAyNC44LTEuOCA0NCAuMiAzOCAxLjYgNDQuNiAxMC44IDQ4IDIuOCAxLjIgMjguNCAyIDU2LjggMiA0Ny44IDAgNTIgLjIgNTYuMiAzLjhsNC44IDMuOHY1NS4yYzAgNTQuNiAwIDU1LjItNC42IDU5LjYtNC40IDQuNi01LjQgNC42LTU3IDUuMi0yOC44LjItNTQuNC44LTU2LjggMS40LTIuNC42LTUuNiAzLTYuOCA1LjQtMS44IDMuMi0yLjQgNDEuNC0yLjYgMTQzLjJsLS4yIDEzOC44LTUuNiA0LjgtNS42IDQuOEg2MDljLTUyLjQgMC01Mi44IDAtNTguMi00LjZsLTUuNC00LjYtLjItMTQwLjYtLjItMTQwLjYtNC44LTMuOGMtNC4yLTMuNC04LTMuOC0zNS42LTMuOC0zMi44IDAtNDEtMS44LTQzLjYtMTAtLjYtMi4yLTEuMi0yNS40LTEuMi01MS40IDAtNjAuOC0uMi01NyAzLjQtNjEuNiAyLjgtMy42IDYtNCAzNy44LTUgMzMtMSAzNS4yLTEuMiAzOS40LTUuNiA0LjYtNC40IDQuNi01LjIgNS44LTcxIDEuMi03My40LjItNjcuMiAxNi42LTk5LjQgOC0xNS44IDEyLjgtMjIgMjgtMzcgMTUuMi0xNS4yIDIxLjQtMTkuNiAzOC4yLTI4IDExLTUuNCAyNC0xMSAyOS0xMi4yIDYuMi0xLjggMjguNi0yLjYgNzEuMi0yLjYgNTguNi0uMiA2Mi42IDAgNjcgMy42eiIvPjwvc3ZnPg==);
+    }
+    
+    
+    .footer-sns-twitter {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgY2xhc3M9Imljb24iIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxwYXRoIGQ9Ik0xMzguNiA3OGMtMjIuNCA1LjItNTUuOCA0MC4yLTYwLjYgNjMuNC0xLjQgNi40LTIgMTI5LjgtMS42IDM2Ny42LjYgMjk4LjYgMSAzNTguOCAzLjQgMzYzIDExIDIwLjIgMjEuNiAzMi40IDM3LjIgNDMgMTUgMTAuMiAxNy40IDExLjIgMzMgMTMgMTEuMiAxLjQgMTM2IDIgMzY1IDEuNiAzMTQtLjYgMzQ4LjYtMSAzNTUtMy44IDE1LjgtNy4yIDMzLjgtMjIgNDMuMi0zNS40IDUuMi03LjQgMTAuOC0xNi42IDEyLjYtMjAuNCAyLjgtNi40IDMuMi00MC44IDMuOC0zNTQgLjQtMjIzLS4yLTM1My40LTEuNC0zNjUtMi0xNy0yLjYtMTguNi0xMy0zNC04LjYtMTIuNi0xNC4yLTE4LjQtMjUuMi0yNS44LTcuOC01LjQtMTcuNC0xMS0yMS42LTEyLjQtNi0yLjItNzIuOC0yLjYtMzY1LjQtMi42LTE5Ni44LjItMzYxIC44LTM2NC40IDEuOHptNTMyLjggMjA1YzEwIDQgMjMgMTAuOCAyOC44IDE1LjIgMTIuNiA5LjIgMTYuNiAxMC42IDI5LjQgOS40IDYuNi0uNiAxMy0zLjIgMjAuNC04LjIgMTEuMi03LjYgMTkuNC05LjIgMjMuNi01IDMuNiAzLjYgMi44IDktMi44IDE4LjYtNy4yIDEyLjQtNiAxOC44IDQuMiAyNC4yIDQuNCAyLjIgOC4yIDUuNiA4LjYgNy40IDEgNC44LTEyLjYgMjQuMi0yMiAzMS44LTExLjggOS4yLTE3LjIgMjIuNi0xOS42IDQ3LjgtNC44IDUwLjQtNy44IDY2LjYtMTYuNCA4NS40LTMgNy03IDE3LjgtOC44IDI0LTEuOCA2LjQtNSAxNC42LTcuNCAxOC40LTIuMiAzLjgtNy40IDEzLTExLjQgMjAuNC0xNy4yIDMwLjgtNDMuNCA2MS40LTcxLjQgODMuOC0yNS42IDIwLjQtNDYgMzMuMi02NC4yIDQwLjItOC40IDMuMi0xOCA3LjYtMjEuNCA5LjYtNy40IDQuNi0yMi40IDguNi01Ny4yIDE1LTYyLjIgMTEuNi03OS4yIDExLjQtMTM1LjYtMS0zMi40LTctMzguNi05LTUyLTE2LjgtMjEuNC0xMi42LTI0LjItMTQuOC0yNC4yLTE5LjQgMC02LjIgMTAuMi05LjIgMzUtMTAuNCAyMi40LTEgMjguNi0yLjYgNTctMTQuMiAyMy44LTkuOCAyOS40LTEyLjggMzAuNC0xNi44IDIuMi04LjItMy0xMy4yLTI2LjgtMjUuNC0yNS44LTEzLjItMzIuMi0xOC40LTQzLjgtMzUuOC05LTEzLjYtMTAtMjEuMi0zLjYtMzMuNiA1LjQtMTAuOCAzLjYtMTUtMTEuOC0yNS40LTktNi0xNC0xMS42LTIwLjgtMjIuNi0yMy40LTM3LjgtMjUtNTAuOC03LjItNTkuOCA0LjgtMi40IDkuNC01LjQgMTAuMi02LjYgMi44LTQuMi0uNC0xNS42LTguNC0yOS0xMS42LTE5LjYtMTMuMi0yNS44LTEzLjItNTUuMiAwLTI4LjggMi42LTM3LjggMTItNDAuMiA5LTIuMiAxNC44IDEgMzUuNiAyMC4yIDI0LjggMjIuOCA0My42IDM2LjYgNjIuOCA0NS44IDggMy44IDE3LjggOS4yIDIyIDEyIDQuMiAyLjggMTQuOCA3IDIzLjQgOS4yIDguNiAyLjIgMjQuMiA2LjggMzQuOCAxMC4yIDEzLjQgNC40IDIzLjYgNi40IDMzIDYuNiAxMi44LjIgMTQuMi0uMiAxOC42LTUuNCA0LTQuOCA0LjgtNy44IDQuOC0xOS4yIDAtMTQuNCA1LjYtMzkuNiAxMS4yLTUwLjYgNC4yLTguNCAyOS4yLTM0LjIgMzkuOC00MS40IDcuOC01LjQgMzUuNi0xNiA1Mi0yMCAxNC4yLTMuNiAzMi42LTEuMiA1Mi40IDYuOHoiLz48L3N2Zz4=);
+    }
+    
+    
+    .footer-sns-gplus {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgY2xhc3M9Imljb24iIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxwYXRoIGQ9Ik0xMzguNiA3OGMtMjIuNCA1LjItNTUuOCA0MC4yLTYwLjYgNjMuNC0xLjQgNi40LTIgMTI5LjgtMS42IDM2Ny42LjYgMjk4LjYgMSAzNTguOCAzLjQgMzYzIDExIDIwLjIgMjEuNiAzMi40IDM3LjIgNDMgMTUgMTAuMiAxNy40IDExLjIgMzMgMTMgMTEuMiAxLjQgMTM2IDIgMzY1IDEuNiAzMTQtLjYgMzQ4LjYtMSAzNTUtMy44IDE1LjgtNy4yIDMzLjgtMjIgNDMuMi0zNS40IDUuMi03LjQgMTAuOC0xNi42IDEyLjYtMjAuNCAyLjgtNi40IDMuMi00MC44IDMuOC0zNTQgLjQtMjIzLS4yLTM1My40LTEuNC0zNjUtMi0xNy0yLjYtMTguNi0xMy0zNC04LjYtMTIuNi0xNC4yLTE4LjQtMjUuMi0yNS44LTcuOC01LjQtMTcuNC0xMS0yMS42LTEyLjQtNi0yLjItNzIuOC0yLjYtMzY1LjQtMi42LTE5Ni44LjItMzYxIC44LTM2NC40IDEuOHpNNDMwIDI5NS40YzQwLjYgMTUuNCA1Ni42IDIzLjggNzIuNiAzOC40IDYuOCA2LjIgNy4yIDE1LjIgMSAyMy40LTYuMiA4LTMzLjYgMzMuOC0zOSAzNi42LTUuNiAyLjgtMTcuNiAyLjgtMjMuMi0uMi0yLjQtMS4yLTguMi01LjItMTMtOC44LTExLjItOC42LTI0LjYtMTEuMi01NS4yLTExLjItMjcuNCAwLTQwLjYgMi42LTUyLjIgMTAuNC00LjQgMi44LTEyLjIgNy42LTE3LjIgMTAuNi0yMyAxMy4yLTUxLjQgNTUtNTUuOCA4Mi40LTIuNiAxNS42LTIuNCAzNC44LjIgNTEgMi44IDE3LjQgMTkuOCA0OC44IDM1LjIgNjUuMiAxNiAxNi42IDQ1IDMzLjYgNjIuOCAzNi42IDI2LjggNC40IDY1LjggMS42IDc5LjQtNS44IDIwLjYtMTEuNCAzMS0xOSA0MS0zMC40IDE4LjgtMjEuNiAyMy40LTM0LjIgMTUuNi00My44LTMuOC00LjgtNC40LTQuOC01MS01LjgtNjAuOC0xLjItNTYuMiAyLjItNTYuMi00My4yIDAtMzIuNC4yLTMzLjIgNC44LTM3IDQuNC0zLjYgOS0zLjggOTItMy44IDc5IDAgODcuOC40IDk0LjIgMy42IDExLjIgNS42IDEzIDExLjQgMTIuOCA0My40IDAgMjUuNC0uOCAzMC44LTcuNiA1OC00IDE2LjYtOS44IDM0LTEyLjYgMzktMi44IDUtOC4yIDE0LjItMTEuNiAyMC42LTguNCAxNS40LTI3LjIgMzYuOC00MC44IDQ2LjYtNS44IDQuNC0xMy44IDEwLjItMTcuNiAxMy4yLTMuOCAzLTExIDctMTYuMiA4LjgtNS4yIDEuOC0xNi4yIDYuNC0yNC40IDEwLTIyLjQgOS42LTM0LjggMTEuNi03MyAxMS42LTM3LjYuMi00Ny0xLjQtNzEtMTItOC4yLTMuNi0xNy42LTcuMi0yMC44LTgtMTUuOC0zLjgtNjctNDUuMi03Ny44LTYyLjgtMi4yLTMuOC03LjYtMTEuNi0xMS44LTE3LjItNC4yLTUuNC05LTE0LTEwLjYtMTktMS44LTQuOC02LjItMTYtMTAtMjQuOC0zLjYtOC44LTcuOC0yMi4yLTkuMi0yOS42LTMuMi0xOC44LTEuNC03OS40IDIuOC05MS40IDEzLjgtNDAuNiAzNS42LTc4IDU4LjgtMTAwLjIgMTQtMTMuNiA0Ny4yLTM2LjQgNTgtMzkuOCA0LjItMS40IDEzLjQtNS4yIDIwLjYtOC40IDIyLTEwIDMyLjgtMTEuNiA3Ni0xMSAzMy44LjYgNDAuNCAxLjIgNTAgNC44em0zNDAuOCA4MC44YzggMy42IDkuNiAxMS4yIDkuMiAzOS4yLS42IDM0LjQtLjYgMzQgNSAzOS42IDQuOCA1IDUuNCA1IDM3LjYgNSA0My40IDAgNDQuNC44IDQzLjIgMzYuMi0uOCAxNy0xLjIgMTguNC02LjQgMjMtNS40IDQuNi02LjYgNC44LTM3LjYgNC44LTMxLjIgMC0zMiAuMi0zNi44IDUtNS42IDUuNC01LjYgNC40LTUgNDEuMi40IDI2LjQuMiAyNy40LTQuNiAzMy00LjggNS42LTYgNS44LTI0LjQgNi40LTIwLjguOC0yOS42LTEuNC0zMy40LTguNC0xLjQtMi42LTItMTUuNi0xLjgtMzUuNi40LTMxLjIuNC0zMS42LTQuNi0zNi42cy01LjYtNS0zNi01Yy0xOC44IDAtMzMtLjgtMzYtMi4yLTcuNi0zLjYtOS42LTExLjItOC44LTMzLjguOC0yOC4yLjQtMjggNDEtMjggNDUuNCAwIDQ1LjQgMCA0NC42LTQyLjYtLjYtMzMtLjYtMzMgNS0zOC40IDQuNC00LjYgNi4yLTUgMjQuOC01IDExIDAgMjIuMiAxIDI1IDIuMnoiLz48L3N2Zz4=);
+    }
+    
+    
+    .footer-sns-weibo {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgY2xhc3M9Imljb24iIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxwYXRoIGQ9Ik0xMzUuMiA3OWMtOC42IDMtMjIuOCAxMi40LTMyLjggMjEuOC04LjIgNy44LTIyLjIgMzEtMjQuNiA0MC42LTEgNC4yLTEuNiAxNjctMS42IDM2NC42IDAgMjg0LjguNCAzNTguNCAyLjYgMzY0IDEuNCAzLjggNi44IDEzIDEyIDIwLjQgOC44IDEyLjggMjQgMjUuNCA0MS44IDM1IDYgMy40IDI3IDMuNiAzNjcuNCAzLjYgMjg2LjIgMCAzNjIuNi0uNiAzNjktMi42IDE5LjgtNi4yIDUxLjItMzcuNiA1Ny40LTU3LjQgMi02LjQgMi42LTgyLjYgMi42LTM2OFYxNDFsLTQuMi05Yy0xMS42LTI0LTM5LjItNDkuOC01OC4yLTU0LjItNC4yLTEtMTY4LjYtMS42LTM2NS42LTEuNi0zMDAgMC0zNTkuMi40LTM2NS44IDIuOHptNTU4LjYgMTY5YzguNiAxLjIgMTYuNCA0IDI0IDguNiA2LjIgMy42IDE1LjIgOC4yIDIwLjIgMTAuMiA1LjggMi4yIDE0LjYgOC44IDI1IDE4LjggMjUuNCAyNC44IDMyLjggMzQuOCAzNy44IDUxIDIuNiA4IDcuNCAxOS44IDEwLjggMjYuNCA3LjggMTQuNiAxMS42IDQyLjYgOS40IDY5LTEgMTQuMi0yLjIgMTguNi03LjQgMjYuNC0zLjIgNS4yLTkgMTIuMi0xMi44IDE1LjYtMTMuOCAxMi0zNCA1LjgtMzguOC0xMi0xLjYtNi0xLjQtMTEuNCAxLjItMjMuNCA0LjItMjAgMy00Ni0yLjYtNTguNi0yLjItNS04LTEyLjYtMTIuOC0xNi44LTQuOC00LjItMTQuNi0xNi40LTIxLjgtMjYuOC03LjItMTAuNi0xNS4yLTIwLjgtMTgtMjIuOC0yLjgtMi0xMi42LTYtMjItOS0xNC40LTQuNC0yMC44LTUuNC00My01LjYtMjgtLjItMzEuNC0xLjItNDIuNC0xMS42LTcuNC03LTguNi0xNS42LTMuOC0yNS4yIDctMTMuMiAxNi40LTE2IDU0LjItMTYgMTYuNiAwIDM1LjguOCA0Mi44IDEuOHptLTIxMy42IDc1LjZjMjAuMiAxNS40IDIwLjYgMTYuNCAyMiA0OCAuNiAxNSAxLjggMjkgMi42IDMxIDIuOCA2LjIgMTEgNi42IDIxLjYuNiA1LjQtMy4yIDE0LTUuOCAyMC02LjQgNS44LS42IDE4LjgtMi40IDI5LTQuMiAxNy4yLTMgMTkuNC0zIDM2IC40IDMyIDYuNiAzNS44IDkuMiA0NC4yIDMxLjYgNS4yIDE0IDUuNCAyMS40IDEuMiAzMi44LTIuMiA1LjQtMi44IDExLTIgMTUuNCAxLjggMTAgMTcuNiAyMy40IDM1IDMwLjIgMTEuMiA0LjIgMTYuMiA3LjYgMjcgMTkgMTkuMiAxOS44IDIwLjIgMjMgMjAgNTktLjIgMzUtLjQgMzUuNC0xOS44IDYzLjYtMTMuOCAxOS44LTMyLjQgMzguNi00OSA1MC01IDMuNC0xMi4yIDguOC0xNS44IDEyLTMuOCAzLjItMTEuNiA4LTE3LjIgMTAuNC01LjYgMi42LTE0LjYgNy40LTE5LjggMTAuNi01LjIgMy40LTE1LjggNy42LTIzLjggOS40LTggMi0yMS4yIDYuNi0yOS42IDEwLjItMjIuNCAxMC0zNi4yIDExLjItMTIxLjggMTAuNGwtNzUtLjYtMTktOC40Yy0xMC42LTQuNi0yNS40LTkuOC0zMy0xMS42LTcuNi0xLjYtMTgtNS44LTIzLTlzLTE0LjItOC0yMC40LTEwLjhjLTE4LTgtNTkuNC00Ni4yLTY2LTYxLjItMi4yLTUtNy40LTE0LjQtMTEuNC0yMC44bC03LjItMTJWNTQ5bDcuNi0xMy42YzQuMi03LjQgOS40LTE4LjYgMTEuNi0yNC44IDMuOC0xMS40IDEzLjQtMjcuOCAyNC44LTQyLjYgMjAuMi0yNi4yIDM4LjQtNDYuOCA1My02MCA5LjItOC4yIDIxLTE4LjYgMjYtMjMuMiA1LTQuNCAxMy4yLTExIDE4LjYtMTQuNiA1LjItMy40IDkuNC03LjIgOS40LTggMC0xIDUuNi00LjYgMTIuNi04LjIgNi44LTMuOCAxNi40LTkuNiAyMS40LTEzLjIgNS0zLjYgMTQuNC04IDIxLTkuOCA2LjYtMiAxNy44LTYuNiAyNS0xMC4yIDEyLTYuMiAxNC40LTYuOCAzMi40LTYuOGgxOS40bDEyLjQgOS42em0yMDMuNiAxMy4yYzMgMS42IDYuNiA0LjQgOCA2IDEuNiAxLjggOS40IDcgMTcuNCAxMS42IDE3IDkuNiAxOSAxMyAyNCA0MiAzLjQgMjAuNCAyLjYgMzIuMi0zLjQgNDMuOC03LjYgMTUuMi0yMi44IDIwLjYtMzEuMiAxMS4yLTctNy42LTkuMi0xMy44LTEwLjYtMjkuNi0xLjItMTMuMi0yLjQtMTYuNC05LjYtMjcuMi0xMS0xNi0xNi44LTIwLjYtMjcuMi0yMC42LTEwIDAtMjQtNi4yLTI3LTExLjYtNS44LTEwLjguNC0yNC42IDEyLjQtMjguNCA4LjYtMi42IDQwLjItLjggNDcuMiAyLjh6Ii8+PHBhdGggZD0iTTQyNCA0NzcuNGMtMzIuNiAzLjYtNDcuOCA3LTYxLjggMTMuOC04IDQtMTkgOC40LTI0LjIgMTAtNS4yIDEuNi0xMi40IDUtMTYuMiA3LjgtMy44IDIuNi0xMSA3LjYtMTYuMiAxMS0xMy40IDguOC0zNSAzMy4yLTM4LjggNDQtMS44IDUtNS40IDE0LjQtOC4yIDIxLTguOCAyMS4yLTguMiAyNi44IDQgNTMgMTAuNiAyMi42IDExIDIzLjIgMjcuNiAzNi40IDIxIDE2LjggMjMuNiAxOC40IDUwLjggMjguMiAyMC4yIDcuMiAyNC42IDggNTQgMTAgMTcuNiAxLjIgNDUuNiAyLjIgNjIgMi4ybDMwIC4yIDE3LjQtOC40YzkuNi00LjYgMjIuNC05LjYgMjguMi0xMS40IDYtMS44IDE1LjQtNi4yIDIwLjgtMTAgNS40LTMuNiAxMy40LTguNiAxNy42LTEwLjggOS4yLTQuNiAzOS0zNC40IDM5LTM5IDAtMS42IDMuOC0xMC4yIDguNC0xOC44IDcuOC0xNC4yIDguNi0xNi44IDguNC0yOS42LS4yLTEyLjgtMS0xNS44LTEwLjYtMzQuNi0xMy40LTI2LjItMzAuNC00My42LTUwLjItNTEuNC03LjItMi44LTE2LjItNy0yMC05LjYtMTEuNC03LjYtMTcuNi05LjItNDguOC0xMi40LTI3LjYtMi44LTU2LjYtMy40LTczLjItMS42em0zOS40IDQ0LjRjMTEuMiAyLjIgMjIuNiA1IDI1IDYuNCA3IDMuNiAyNiAyMS44IDMwLjggMjkuNCA4LjYgMTMuNCAxMSA1NCA0LjYgNzctMi42IDkuNi0xOC44IDI3LjYtMzkuNCA0NC4yLTE1LjYgMTIuNC0xNyAxMy0yOS44IDE0LTcuNi44LTIyLjQgMi4yLTMzIDMuNi0yMi42IDIuNi00NS42IDEtNTMuOC0zLjgtMy4yLTItOC02LjgtMTAuOC0xMC44LTIuNi00LjItOC40LTEwLjQtMTIuOC0xMy44LTguMi02LjgtMTMuNC0xNi40LTE5LjQtMzctMy44LTEzLjItMi44LTIxLjggNS4yLTQ3LjYgMy4yLTEwLjQgNi0xNC42IDE3LjQtMjUuOCAxMi40LTEyLjIgMjMuOC0yMi4yIDMzLjItMjkuNiA0LTMgMzguNi05LjQgNTMuNC05LjggNSAwIDE4LjIgMS42IDI5LjQgMy42eiIvPjxwYXRoIGQ9Ik0zODcuMiA2MDZjLTEyLjIgMy44LTE4LjIgMTMuNC0xNSAyNC42IDUuOCAyMS4yIDI3LjggMjUuOCA0MC42IDguNiA2LjYtOC44IDcuOC0xNi4yIDQuMi0yNC00LjgtMTAuMi0xNS40LTEzLjQtMjkuOC05LjJ6Ii8+PC9zdmc+);
+    }
+    
+    
+    
+    
+    .footer-sns-github {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgY2xhc3M9Imljb24iIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxwYXRoIGQ9Ik0xMzguNCA3OGMtNi40IDEuNC0yNi40IDE0LjItMzYgMjIuOC04IDcuMi0yMiAyOS44LTI0LjQgMzkuMi0xLjYgNi40LTIgMTEzLjItMS42IDM2OCAuNiAyOTkuNCAxIDM1OS44IDMuNCAzNjQgMTEgMjAuMiAyMS42IDMyLjQgMzcuMiA0MyAxNS42IDEwLjYgMTcuMiAxMS4yIDM0LjIgMTMuMiAxMC42IDEuMiA2My40IDEuNiAxMjcuNiAxLjRsMTA5LjYtLjYgNi02LjggNi4yLTYuOC0xLjItMjUuMmMtLjgtMTUuOC0uMi0zMy40IDEuNC00Ny4yIDMtMjUuNCAxLjQtMzYuMi02LTQzLjItNS00LjYtNi4yLTQuOC0zMC42LTQuMi0yNy42LjgtMjQgMS42LTY4LjgtMTYtOC42LTMuNC0yMi42LTE4LTI4LjQtMjkuOC0xMS40LTIyLjgtMjctNDUtMzkuMi01NS42LTE0LTEyLjItMTkuOC0yMC44LTE5LjgtMjguNiAwLTExLjYgMTMuNi0xMi42IDMzLjItMi40IDE2LjYgOC44IDIwLjggMTIuNCA0MC44IDM2LjIgMjQuMiAyOC42IDMxIDMzLjYgNTQgMzkuNiAxNS4yIDQgNDIuMiAzIDUxLjQtMS44IDktNC42IDE4LTE1LjIgMjQuNC0yOS4yIDExLjQtMjQuMiA3LjQtMzEuMi0yMC42LTM2LjgtOS44LTItMjkuMi04LTQzLjQtMTMuNC00MC40LTE1LjgtNjQuNi0zNy40LTg1LjQtNzYuMi0xMS42LTIxLjgtMTUuNC0zMy0xOC4yLTUzLjYtNC4yLTMyLjItNC44LTYwLjItMS40LTg0IDMuNC0yMy44IDYuOC0zMi44IDIwLjItNTQgNC02IDguOC0xNS42IDExLTIxLjQgMy44LTEwIDMuOC0xMS42IDEtMzAtNS4yLTM0LjItMy4yLTUyLjQgNy42LTcwLjIgNy4yLTEyLjIgMTUtMTcuMiAyNC4yLTE1LjggMTIuOCAyLjIgNTIgMTcuNCA2Ni44IDI2LjIgMjYgMTUgMjkgMTUuNCA4Mi40IDcuMiAyNC42LTMuOCAzMy44LTQuMiA2MC0zLjIgMTcgLjYgNDEuNCAzIDU0IDUuMiAzOC40IDYuNiA0OS42IDUuMiA3My0xMCA2LjYtNC4yIDE3LjQtOS40IDI0LTExLjYgNi42LTIuMiAxNi01LjggMjEtOC4yIDEzLTYgMjgtNS42IDM1LjYuOCAxMi40IDEwLjQgMTguNiA0MS40IDE0LjQgNzEuNi00LjQgMzAuNi0zIDM5LjQgOC40IDUzLjggMy40IDQuNCAxMS4yIDE5LjIgMTcuNCAzMy4yTDc3NSA0NDN2NzhsLTEwIDI4Yy0xNS4yIDQzLjItMzYuOCA3My4yLTY2LjIgOTIuOC0xMy40IDguOC01NyAyNS40LTc2LjggMjktMjguMiA1LjItMzMuMiAxMi42LTIyIDMyLjIgMTEuMiAxOS40IDEyLjQgMzIuOCAxMS42IDEyOS42bC0uNiA4NS44IDUuNCA0LjZjMy42IDMgOS4yIDUuMiAxNiA2IDUuOC44IDYwLjIgMSAxMjAuNi42IDEwOC40LS42IDExMC4yLS42IDExOS01IDI0LTExLjYgNDAtMjcuNCA1MS42LTUwLjZsNS40LTExIC42LTM0N2MuNC0yMjMtLjItMzUzLjQtMS40LTM2NS0yLTE3LTIuNi0xOC42LTEzLTM0LTEwLjYtMTUuNC0yMi44LTI2LjItNDMuMi0zNy4yLTQuMi0yLjQtNjQuNi0yLjgtMzY2LTMuMi0xOTguNiAwLTM2NCAuNC0zNjcuNiAxLjR6Ii8+PC9zdmc+);
+    }
+    
+    
+    
+    
+    
+</style>
+
+    
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #212121 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #212121;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #212121;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #212121;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-image: url(https://jokers-1252021562.cosgz.myqcloud.com/images/E7.jpg);
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+
+
+    <script>lsloader.load("js/jquery.min.js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==")</script>
+    
+
+    <script>function Queue() {
+            this.dataStore = [];
+            this.offer = b;
+            this.poll = d;
+            this.execNext = a;
+            this.debug = false;
+            this.startDebug = c;
+            function b(e) {
+                if (this.debug) {
+                    console.log("Offered a Queued Function.")
+                }
+                if (typeof e === "function") {
+                    this.dataStore.push(e)
+                } else {
+                    console.log("You must offer a function.")
+                }
+            }
+
+            function d() {
+                if (this.debug) {
+                    console.log("Polled a Queued Function.")
+                }
+                return this.dataStore.shift()
+            }
+
+            function a() {
+                var e = this.poll();
+                if (e !== undefined) {
+                    if (this.debug) {
+                        console.log("Run a Queued Function.")
+                    }
+                    e()
+                }
+            }
+
+            function c() {
+                this.debug = true
+            }
+        }
+        var queue = new Queue();</script>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https'){
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else{
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+    <!-- Analytics -->
+    
+
+    <!-- Custom Head -->
+    
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Linux内核在整个计算机系统中的位置"><span class="post-toc-number">1.</span> <span class="post-toc-text">Linux内核在整个计算机系统中的位置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#内核的作用"><span class="post-toc-number">2.</span> <span class="post-toc-text">内核的作用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Linux内核的整体架构"><span class="post-toc-number">3.</span> <span class="post-toc-text">Linux内核的整体架构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#高度模块化设计的系统，利于分工合作。"><span class="post-toc-number">4.</span> <span class="post-toc-text">高度模块化设计的系统，利于分工合作。</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#系统中的数据结构"><span class="post-toc-number">5.</span> <span class="post-toc-text">系统中的数据结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#子系统架构"><span class="post-toc-number">6.</span> <span class="post-toc-text">子系统架构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Process-Scheduler-架构"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">Process Scheduler 架构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#目标"><span class="post-toc-number">6.1.1.</span> <span class="post-toc-text">目标</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#模块"><span class="post-toc-number">6.1.2.</span> <span class="post-toc-text">模块</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数据表示"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">数据表示</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#依赖关系、数据流、控制流"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">依赖关系、数据流、控制流</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Memory-Manager-架构"><span class="post-toc-number">7.</span> <span class="post-toc-text">Memory Manager 架构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#目标-1"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">目标</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#模块-1"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数据表示-1"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">数据表示</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#依赖关系、数据流和控制流"><span class="post-toc-number">7.4.</span> <span class="post-toc-text">依赖关系、数据流和控制流</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Virtual-File-System-架构"><span class="post-toc-number">8.</span> <span class="post-toc-text">Virtual File System 架构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#目标-2"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">目标</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#模块-2"><span class="post-toc-number">8.2.</span> <span class="post-toc-text">模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数据表示-2"><span class="post-toc-number">8.3.</span> <span class="post-toc-text">数据表示</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#依赖关系、数据流和控制流-1"><span class="post-toc-number">8.4.</span> <span class="post-toc-text">依赖关系、数据流和控制流</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Network-Interface-架构"><span class="post-toc-number">9.</span> <span class="post-toc-text">Network Interface 架构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#目标-3"><span class="post-toc-number">9.1.</span> <span class="post-toc-text">目标</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#模块-3"><span class="post-toc-number">9.2.</span> <span class="post-toc-text">模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数据表示-3"><span class="post-toc-number">9.3.</span> <span class="post-toc-text">数据表示</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数据流，控制流和依赖关系"><span class="post-toc-number">9.4.</span> <span class="post-toc-text">数据流，控制流和依赖关系</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#结论"><span class="post-toc-number">10.</span> <span class="post-toc-text">结论</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考文章："><span class="post-toc-number">11.</span> <span class="post-toc-text">参考文章：</span></a></li></ol>
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+    
+
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                【译】Linux概念架构
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="https://jokers-1252021562.file.myqcloud.com/images/yu_head.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>joker</strong>
+        <span>11月 29, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/linux/">linux</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/架构/">架构</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=【译】Linux概念架构&url=https://tong12580.github.io/2017/11/30/linux1/index.html&pic=https://tong12580.github.iohttps://jokers-1252021562.file.myqcloud.com/images/E331245678.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=【译】Linux概念架构&url=https://tong12580.github.io/2017/11/30/linux1/index.html&via=joker" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://tong12580.github.io/2017/11/30/linux1/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://tong12580.github.io/2017/11/30/linux1/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=https://tong12580.github.io/2017/11/30/linux1/index.html&title=【译】Linux概念架构" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 LinkedIn
+            </li>
+        </a>
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Maxxice blog&title=【译】Linux概念架构&summary=java springBoot springCloud&pics=https://tong12580.github.iohttps://jokers-1252021562.file.myqcloud.com/images/E331245678.png&url=https://tong12580.github.io/2017/11/30/linux1/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+        <a class="post_share-link" href="https://telegram.me/share/url?url=https://tong12580.github.io/2017/11/30/linux1/index.html&text=【译】Linux概念架构" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Telegram
+            </li>
+        </a>
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>Linux kernel成功的两个原因：（1）灵活的架构设计使得大量的志愿开发者能够很容易加入到开发过程中；（2）每个子系统（尤其是那些需要改进的）都具备良好的可扩展性。正是这两个原因使得Linux kernel可以不断进化和改进。</p>
+<h2 id="Linux内核在整个计算机系统中的位置"><a href="#Linux内核在整个计算机系统中的位置" class="headerlink" title="Linux内核在整个计算机系统中的位置"></a>Linux内核在整个计算机系统中的位置</h2><p>Fig 1 - 计算机系统分层结构</p>
+<blockquote>
+<p>分层结构的原则：the dependencies between subsystems are from the top down: layers pictured near the top depend on lower layers, but subsystems nearer the bottom do not depend on higher layers.</p>
+</blockquote>
+<p>这种子系统之间的依赖性只能是从上到下，也就是在上图中位于顶层的子系统依赖位于底层的子系统，反之则不行。</p>
+<h2 id="内核的作用"><a href="#内核的作用" class="headerlink" title="内核的作用"></a>内核的作用</h2><ol>
+<li>虚拟化(抽象)，将计算机硬件抽象为一台虚拟机，供用户进程(process)使用；进程运行时完全不需要知道硬件是如何工作的，只要调用Linux kernel提供的虚拟接口(virtual interface)即可。</li>
+<li>多任务处理，实际上是多个任务在并行使用计算机硬件资源，内核的任务是仲裁对资源的使用，制造每个进程都以为自己是独占系统的错觉。<br>PS：进程上下文切换就是要换掉程序状态字、换掉页表基地址寄存器的内容、换掉current指向的task_struct实例、换掉PC——&gt;也就换掉了进程打开的文件(通过task_struct的files可以找到)、换掉了进程内存的执行空间(通过task_struct的mem可以找到)；</li>
+</ol>
+<h2 id="Linux内核的整体架构"><a href="#Linux内核的整体架构" class="headerlink" title="Linux内核的整体架构"></a>Linux内核的整体架构</h2><p>Linux内核的整体架构<br>中心系统是Process Scheduler（SCHED）：所有其余的子系统都依赖于Process Scheduler，因为其余子系统都需要阻塞和恢复进程。当一个进程需要等待一个硬件动作完成时，相应子系统会阻塞这个进程；当这个硬件动作完成时，子系统会将这个进程恢复：这个阻塞和恢复动作都要依赖于Processor Scheduler完成。</p>
+<p>上图中的每一个依赖箭头都有原因：</p>
+<ul>
+<li>Process Scheduler依赖Memory manager：进程恢复执行时，需要依靠Memory Manager分配供它运行的内存。</li>
+<li>IPC子系统依赖于Memory manager：共享内存机制是进程间通信的一种方法，运行两个进程利用同一块共享的内存空间进行信息传递。</li>
+<li>VFS依赖于Network Interface：支持NFS网络文件系统；</li>
+<li>VFS依赖于Memory Manager：支持ramdisk 设备</li>
+<li>memory manager依赖于VFS，因为要支持swapping，可以将暂时不运行的进程换出到磁盘上的swap分区，进入挂起状态。</li>
+</ul>
+<h2 id="高度模块化设计的系统，利于分工合作。"><a href="#高度模块化设计的系统，利于分工合作。" class="headerlink" title="高度模块化设计的系统，利于分工合作。"></a>高度模块化设计的系统，利于分工合作。</h2><ol>
+<li>只有极少数的程序员需要横跨多个模块开展工作，这种情况确实会发生，仅发生在当前系统需要依赖另一个子系统时；</li>
+<li>硬件设备驱动（hardware device drivers）、文件系统模块（logical filesystem modules）、网络设备驱动（network device drivers）和网络协议模块（network protocol modules）这四个模块的可扩展性最高。</li>
+</ol>
+<h2 id="系统中的数据结构"><a href="#系统中的数据结构" class="headerlink" title="系统中的数据结构"></a>系统中的数据结构</h2><ol>
+<li><p>Task List<br>Process Scheduler 针对每个进程维护一个数据结构task_struct；所有的进程用链表管理，形成task list；process scheduler还维护一个current指针指向当前正在占用CPU的进程。</p>
+</li>
+<li><p>Memory Map<br>Memory Manager存储每个进程的虚拟地址到物理地址的映射；并且也提供了如何换出特定的页，或者是如何进行缺页处理。这些信息存放在数据结构mm_struct中。每个进程都有一个mm_struct结构，在进程的task_struct结构中有一个指针mm指向次进程的mm_struct结构。<br>在mm_struct中有一个指针pgd，指向该进程的页目录表（即存放页目录首地址）——&gt;当该进程被调度时，此指针被换成物理地址，写入控制寄存器CR3(x86体系结构下的页基址寄存器)</p>
+</li>
+<li><p>I-nodes<br>VFS通过inodes节点表示磁盘上的文件镜像，inodes用于记录文件的物理属性。每个进程都有一个files_struct结构，用于表示该进程打开的文件，在task_struct中有个files指针。使用inodes节点可以实现文件共享。文件共享有两种方式：（1）通过同一个系统打开文件file指向同一个inodes节点，这种情况发生于父子进程间；（2）通过不同系统打开文件指向同一个inode节点，举例有硬链接；或者是两个不相关的指针打开同一个文件。</p>
+</li>
+<li><p>Data Connection<br>内核中所有的数据结构的根都在Process Scheduler维护的task list链表中。系统中每个进程的的数据结构task_struct中有一个指针mm指向它的内存映射信息；也有一个指针files指向它打开的文件（用户打开文件表）；还有一个指针指向该进程打开的网络套接字。</p>
+</li>
+</ol>
+<h2 id="子系统架构"><a href="#子系统架构" class="headerlink" title="子系统架构"></a>子系统架构</h2><h3 id="Process-Scheduler-架构"><a href="#Process-Scheduler-架构" class="headerlink" title="Process Scheduler 架构"></a>Process Scheduler 架构</h3><h4 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h4><p>process scheduler是Linux kernel中最重要的子系统。系统通过它来控制对CPU的访问——不仅仅是用户进程对CPU的访问，也包括其余子系统对CPU的访问。</p>
+<h4 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h4><p>进程调度器<br>调度策略模块(scheduling policy module)：决定哪个进程获得对CPU的访问权；调度策略应该让所有进程尽可能公平得共享CPU。</p>
+<ul>
+<li>体系结构相关模块(architecture-specific module)设计一组统一的抽象接口来屏蔽特定体系接口芯片的硬件细节。这个模块与CPU交互以阻塞和恢复进程。这些操作包括获取每个进程需要保存的寄存器和状态信息、执行汇编代码来完成阻塞或者恢复操作。</li>
+<li>体系结构无关模块(architecture-independent module) 与调度策略模块交互将决定下一个执行的进程，然后调用体系结构相关的代码去恢复那个进程的执行。不仅如此，这个模块还会调用memory manager的接口来确保被阻塞的进程的内存映射信息被正确得保存起来。</li>
+<li>系统调用接口模块(system call interface) 允许用户进程访问Linux Kernel明确暴露给用户进程的资源。通过一组定义合适的基本上不变的接口（POSIX标准），将用户应用程序和Linux内核解耦，使得用户进程不会受到内核变化的影响。</li>
+</ul>
+<h3 id="数据表示"><a href="#数据表示" class="headerlink" title="数据表示"></a>数据表示</h3><p>调度器维护一个数据结构——task list，其中的元素时每个活动的进程task_struct实例；这个数据结构不仅仅包含用来阻塞和恢复进程的信息，也包含额外的计数和状态信息。这个数据结构在整个kernel层都可以公共访问。</p>
+<h3 id="依赖关系、数据流、控制流"><a href="#依赖关系、数据流、控制流" class="headerlink" title="依赖关系、数据流、控制流"></a>依赖关系、数据流、控制流</h3><p>正如前面提到过的，调度器需要调用memory manager提供的功能，去为需要恢复执行的进程选择合适的物理地址，正因为如此，所以Process Scheuler子系统依赖于内存管理子系统。当其他内核子系统需要等待硬件请求完成时，它们都依赖于进程调度子系统进行进程的阻塞和恢复。这种依赖性通过函数调用和访问共享的task list数据结构来体现。所有的内核子系统都要读或者写代表当前正在运行进程的数据结构，因此形成了贯穿整个系统的双向数据流。</p>
+<p>除了内核层的数据流和控制流，OS服务层还给用户进程提供注册定时器的接口。这形成了由调度器对用户进程的控制流。通常唤醒睡眠进程的用例不在正常的控制流范围，因为用户进程无法预知何时被唤醒。最后，调度器与CPU交互来阻塞和恢复进程，这又形成它们之间的数据流和控制流——CPU负责打断当前正在运行的进程，并允许内核调度其他的进程运行。</p>
+<h2 id="Memory-Manager-架构"><a href="#Memory-Manager-架构" class="headerlink" title="Memory Manager 架构"></a>Memory Manager 架构</h2><h3 id="目标-1"><a href="#目标-1" class="headerlink" title="目标"></a>目标</h3><p>内存管理模块负责控制进程如何访问物理内存资源。通过硬件内存管理系统（MMU）管理进程虚拟内存和机器物理内存之间的映射。每一个进程都有自己独立的虚拟内存空间，所以两个进程可能有相同的虚拟地址，但是它们实际上在不同的物理内存区域运行。MMU提供内存保护，让两个进程的物理内存空间不互相干扰。内存管理模块还支持swap——将暂时不用的内存页换出到磁盘上的swap分区，这种技术让进程的虚拟地址空间大于物理内存的大小。虚拟地址空间的大小由机器字长决定。</p>
+<h3 id="模块-1"><a href="#模块-1" class="headerlink" title="模块"></a>模块</h3><p>内存管理子系统</p>
+<ul>
+<li>架构相关模块(architecture specific module)提供访问物理内存的虚拟接口；</li>
+<li>架构无关模块(architecture independent module)负责每个进程的地址映射以及虚拟内存交换。当发生缺页错误时，由该模块负责决定哪个内存页应该被换出内存——因为这个内存页换出选择算法几乎不需要改动，所以这里没有建立一个独立的策略模块。</li>
+<li>系统调用接口(system call interface) 为用户进程提供严格的访问接口（malloc和free；mmap和ummap）。这个模块允许用进程分配和释放内存、执行内存映射文件操作</li>
+</ul>
+<h3 id="数据表示-1"><a href="#数据表示-1" class="headerlink" title="数据表示"></a>数据表示</h3><p>内存管理存放每个进程的虚拟内存到物理内存的映射信息。这种映射信息存放在mm_struct结构实例中，这个实例的指针又存放在每个进程的task_struct中。除了存放映射信息，数据块中还应该存放关于内存管理器如何获取和存储页的信息。例如：可执行代码能够将可执行镜像作为备份存储；但是动态申请的数据则必须备份到系统页中。（这个没看懂，请高手解惑？）<br>最后，内存管理模块还应该存放访问和技术信息，以保证系统的安全。</p>
+<h3 id="依赖关系、数据流和控制流"><a href="#依赖关系、数据流和控制流" class="headerlink" title="依赖关系、数据流和控制流"></a>依赖关系、数据流和控制流</h3><p>内存管理器控制物理内存，当page fault发生时，接受硬件的通知（缺页中断）—— 这意味着在内存管理模块和内存管理硬件之间存在双向的数据流和控制流。内存管理也依赖文件系统来支持swapping和内存映射I/O——这种需求意味着内存管理器需要调用对文件系统提供的函数接口(procedure calls)，往磁盘中存放内存页和从磁盘中取内存页。因为文件系统请求非常慢，所以在等待内存页被换入之前，内存管理器要让进程需要进入休眠——这种需求让内存管理器调用process scheduler的接口。由于每个进程的内存映射存放在进程调度器的数据结构中，所以在内存管理器和进程调度器之间也有双向的数据流和控制流。用户进程可以建立新的进程地址空间，并且能够感知缺页错误——这里需要来自内存管理器的控制流。一般来说没有用户进程到内存管理器的数据流，但是用户进程却可以通过select系统调用，从内存管理器获取一些信息。</p>
+<h2 id="Virtual-File-System-架构"><a href="#Virtual-File-System-架构" class="headerlink" title="Virtual File System 架构"></a>Virtual File System 架构</h2><h3 id="目标-2"><a href="#目标-2" class="headerlink" title="目标"></a>目标</h3><p>虚拟文件系统为存储在硬件设备上数据提供统一的访问接口。可以兼容不同的文件系统（ext2,ext4,ntf等等）。计算机中几乎所有的硬件设备都被表示为一个通用的设备驱动接口。逻辑文件系统促进与其他操作系统标准的兼容性，并且允许开发者以不同的策略实现文件系统。虚拟文件系统更进一步，允许系统管理员在任何设备上挂载任何逻辑文件系统。虚拟文件系统封装物理设备和逻辑文件系统的细节，并且允许用户进程使用统一的接口访问文件。</p>
+<p>除了传统的文件系统目标，VFS也负责装载新的可执行文件。这个任务由逻辑文件系统模块完成，使得Linux可以支持多种可执行文件。</p>
+<h3 id="模块-2"><a href="#模块-2" class="headerlink" title="模块"></a>模块</h3><p>虚拟文件系统模块</p>
+<ul>
+<li>设备驱动模块（device driver module）</li>
+<li>设备独立接口模块（Device Independent Interface）：提供所有设备的同一视图</li>
+<li>逻辑文件系统（logical file system）：针对每种支持的文件系统</li>
+<li>系统独立接口（system independent interface）提供硬件资源和逻辑文件系统都无关的接口，这个模块通过块设备节点或者字符设备节点提供所有的资源。</li>
+<li>系统调用模块（system call interface）提供用户进程对文件系统的统一控制访问。虚拟文件系统为用户进程屏蔽了所有特殊的特性。</li>
+</ul>
+<h3 id="数据表示-2"><a href="#数据表示-2" class="headerlink" title="数据表示"></a>数据表示</h3><p>所有文件使用i-nodes表示。每个inode都记录一个文件在硬件设备上的位置信息。不仅如此，inode还存放着指向逻辑文件系统模块和设备驱动的的函数指针，这些指针能够执行具体的读写操作。通过按照这种形式（就是面向对象中的虚函数的思想）存放函数指针，具体的逻辑文件系统和设备驱动可以向内核注册自己而不需要内核依赖具体的模块特性。</p>
+<h3 id="依赖关系、数据流和控制流-1"><a href="#依赖关系、数据流和控制流-1" class="headerlink" title="依赖关系、数据流和控制流"></a>依赖关系、数据流和控制流</h3><p>一个特殊的设备驱动是ramdisk，这个设备在主存中开辟一片区域，并把它当成持久性存储设备使用。这个设备驱动使用内存管理模块完成任务，所以在VFS与对内存管理模块存在依赖关系（图中的依赖关系反了，应该是VFS依赖于内存管理模块）、数据流和控制流。</p>
+<p>逻辑文件系统支持网络文件系统。这个文件系统像访问本地文件一样，从另一台机器上访问文件。为了实现这个功能，一种逻辑文件系统通过网络子系统完成它的任务——这引入了VFS对网络子系统的一个依赖关系以及它们之间的控制流和数据流。</p>
+<p>正如前面提到的，内存管理器使用VFS完成内存swap功能和内存映射I/O。另外，当VFS等待硬件请求完成时，VFS需要使用进程调度器阻塞进程；当请求完成时，VFS需要通过进程调度器唤醒进程。最后，系统调用接口允许用户进程调用来存取数据。不像前面的子系统，VFS没有提供给用户注册不明确调用的机制，所以没有从VFS到用户进程的控制流。</p>
+<h2 id="Network-Interface-架构"><a href="#Network-Interface-架构" class="headerlink" title="Network Interface 架构"></a>Network Interface 架构</h2><h3 id="目标-3"><a href="#目标-3" class="headerlink" title="目标"></a>目标</h3><p>网络子系统让Linux系统能够通过网络与其他系统相连。这个子系统支持很多硬件设备，也支持很多网络协议。网络子系统将硬件和协议的实现细节都屏蔽掉，并抽象出简单易用的接口供用户进程和其他子系统使用——用户进程和其余子系统不需要知道硬件设备和协议的细节。</p>
+<h3 id="模块-3"><a href="#模块-3" class="headerlink" title="模块"></a>模块</h3><p>网络协议层模块图</p>
+<ul>
+<li>网络设备驱动模块（network device drivers）<br>设备独立接口模块（device independent interface module）提供所有硬件设备的一致访问接口，使得高层子系统不需要知道硬件的细节信息。</li>
+<li>网络协议模块（network protocol modules）负责实现每一个网络传输协议，例如：TCP，UDP，IP，HTTP，ARP等等~</li>
+<li>协议无关模块（protocol independent interface）提供独立于具体协议和具体硬件设备的一致性接口。这使得其余内核子系统无需依赖特定的协议或者设备就能访问网络。</li>
+<li>系统调用接口模块（system calls interface）规定了用户进程可以访问的网络编程API</li>
+</ul>
+<h3 id="数据表示-3"><a href="#数据表示-3" class="headerlink" title="数据表示"></a>数据表示</h3><p>每个网络对象都被表示为一个套接字（socket）。套接字与进程关联的方法和i-nodes节点相同。通过两个task_struct指向同一个套接字，套接字可以被多个进程共享。</p>
+<h3 id="数据流，控制流和依赖关系"><a href="#数据流，控制流和依赖关系" class="headerlink" title="数据流，控制流和依赖关系"></a>数据流，控制流和依赖关系</h3><p>当网络子系统需要等待硬件请求完成时，它需要通过进程调度系统将进程阻塞和唤醒——这形成了网络子系统和进程调度子系统之间的控制流和数据流。不仅如此，虚拟文件系统通过网络子系统实现网络文件系统（NFS）——这形成了VFS和网络子系统指甲的数据流和控制流。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>1、Linux内核是整个Linux系统中的一层。内核从概念上由五个主要的子系统构成：进程调度器模块、内存管理模块、虚拟文件系统、网络接口模块和进程间通信模块。这些模块之间通过函数调用和共享数据结构进行数据交互。、</p>
+<p>2、Linux内核架构促进了他的成功，这种架构使得大量的志愿开发人员可以合适得分工合作，并且使得各个特定的模块便于扩展。</p>
+<ul>
+<li>可扩展性一：Linux架构通过一项数据抽象技术使得这些子系统成为可扩展的——每个具体的硬件设备驱动都实现为单独的模块，该模块支持内核提供的统一的接口。通过这种方式，个人开发者只需要和其他内核开发者做最少的交互，就可以为Linux内核添加新的设备驱动。</li>
+<li>可扩展性二：Linux内核支持多种不同的体系结构。在每个子系统中，都将体系结构相关的代码分割出来，形成单独的模块。通过这种方法，一些厂家在推出他们自己的芯片时，他们的内核开发小组只需要重新实现内核中机器相关的代码，就可以讲内核移植到新的芯片上运行。</li>
+</ul>
+<h2 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h2><p>1.<a href="http://www.cs.cmu.edu/afs/cs/project/able/www/paper_abstracts/intro_softarch.html" target="_blank" rel="noopener">http://www.cs.cmu.edu/afs/cs/project/able/www/paper_abstracts/intro_softarch.html</a><br>2.<a href="http://www.fceia.unr.edu.ar/ingsoft/monroe00.pdf" target="_blank" rel="noopener">http://www.fceia.unr.edu.ar/ingsoft/monroe00.pdf</a><br>3.内核源码：<a href="http://lxr.oss.org.cn/" target="_blank" rel="noopener">http://lxr.oss.org.cn/</a></p>
+<blockquote>
+<p>声明：本文翻译自Conceptual Architecture of the Linux Kernel</p>
+<p>本文链接： <a href="http://www.javadu.site/2017/11/05/Conceptional-Architecture-of-Linux/" target="_blank" rel="noopener">http://www.javadu.site/2017/11/05/Conceptional-Architecture-of-Linux/</a><br>版权声明： 本文章采用 CC BY 4.0 CN协议</p>
+</blockquote>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #212121;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load"> 
+    <button class="disqus_click_btn">阅读评论（请确保 disqus 可以正常加载）</button>
+</div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://blog.futuredream.top/2017/11/30/linux1/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://blog.futuredream.top/2017/11/30/linux1/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/ls-javascript" id="disqus-lazy-load-script">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//tong12580-github-io-jokers.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+  	
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2017/11/30/mysqlIndex1/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/11/27/proxy1/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="https://jokers-1252021562.file.myqcloud.com/images/yu_head.jpg" alt="joker's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        yutong467942250@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="mailto:yutong467942250@gmail.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/11/">十一月 2017<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/10/">十月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">十二月 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">十一月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/06/">六月 2016<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/03/">三月 2016<span class="sidebar_archives-count">2</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/cache/">cache<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/git/">git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/java/">java<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/linux/">linux<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/myBatis/">myBatis<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/nginx/">nginx<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/npm/">npm<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/redis/">redis<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/spring/">spring<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/中文乱码/">中文乱码<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/哲学/">哲学<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/搜索引擎/">搜索引擎<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据库/">数据库<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/日志/">日志<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/杂想/">杂想<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/游记/">游记<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/规划/">规划<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/规则引擎/">规则引擎<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计模式/">设计模式<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="标签">
+                
+                    <i class="material-icons sidebar-material-icons">stars</i>
+                
+                标签
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/timeline" title="时间轴">
+                
+                    <i class="material-icons sidebar-material-icons">timeline</i>
+                
+                时间轴
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/links" title="友情链接">
+                
+                    <i class="material-icons sidebar-material-icons">link</i>
+                
+                友情链接
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/twitter" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/facebook" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+        <a href="https://plus.google.com/u/0/108546576810753300673" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-gplus">
+                <span class="visuallyhidden">Google Plus</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Weibo -->
+    
+        <a href="https://m.weibo.cn" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-weibo">
+                <span class="visuallyhidden">Weibo</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/tong12580" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;2016&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>Maxxice blog
+        </div>
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Please refer to the earlier blog - <a href="http://blog.csdn.net/j3oker" target="_blank">j3koer</a></div>
+                <div class="footer-develop-div">Reprint please indicate the source.</div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+
+    <script>lsloader.load("js/lazyload.min.js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==")</script>
+    <script>lsloader.load("js/js.min.js","/js/js.min.js?oAl/+lvaqTFV31JXTmbrNA==")</script>
+
+
+
+    <script>lsloader.load("js/nprogress.js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==")</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+    
+        <script>lsloader.load("js/smoothscroll.js","/js/smoothscroll.js?lOy/ACj5suSNi7ZVFVbpFQ==")</script>
+    
+
+
+
+
+
+
+
+   <!-- 使用 DISQUS js 代码 -->
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Window Load-->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Bing Background -->
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.4.0 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>
