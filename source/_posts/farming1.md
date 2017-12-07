@@ -1,5 +1,4 @@
-title: 耕
-thumbnail: https://jokers-1252021562.cosgz.myqcloud.com/images/taiWan/farming.jpg
+title: 随笔
 date: 2017/11/12 20:42:13
 tags: 
     - 负面情绪
@@ -8,6 +7,8 @@ categories:
 ---
 
 > 买个番薯吧，否则也太寒冷。
+
+----
 
 长期以来，我们都认为负面情绪是非常不好的，特别喜欢用转移疗法--要么就是与旁人倾诉，要么就是和外人发泄，而更多人则选择了强颜欢笑。
 
