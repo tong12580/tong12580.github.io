@@ -171,6 +171,29 @@
     
     <item>
       <title>耕</title>
+      <link>https://blog.futuredream.top/2017/11/13/farming1/</link>
+      <guid>https://blog.futuredream.top/2017/11/13/farming1/</guid>
+      <pubDate>Sun, 12 Nov 2017 20:42:13 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;买个番薯吧，否则也太寒冷。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;长期以来，我们都认为负面情绪是非常不好的，特别喜欢用转移疗法–要么就是与旁人倾诉，要么就是和外人发泄，而更多人则选择了强颜欢笑。&lt;/p&gt;
+&lt;p&gt;其实，静下来想想，大部分不高兴地河
+        
+      
+      </description>
+      
+      <content:encoded><![CDATA[<blockquote><p>买个番薯吧，否则也太寒冷。</p></blockquote><p>长期以来，我们都认为负面情绪是非常不好的，特别喜欢用转移疗法–要么就是与旁人倾诉，要么就是和外人发泄，而更多人则选择了强颜欢笑。</p><p>其实，静下来想想，大部分不高兴地河豚态，都是潜意识里的一个挣扎。你突然意识到现在的生活状态不对。或者总是起太晚，或者总是赚不到钱，或者，睁开眼睛总是看不到好的消息。就算是想有所行动或者改变，都觉得是狗咬月亮无处下嘴。</p><p>没有人可以精心策划适合所有人的自救方案。并且也不必。敢于承认自己今天不开心，敢于决定今天自己心情不好，已经很成熟了。两个解决办法：去街边买点吃的，或者关机独处。向外有人间烟火，向内则窥视内心。</p>]]></content:encoded>
+      
+      <comments>https://blog.futuredream.top/2017/11/13/farming1/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>耕</title>
       <link>https://blog.futuredream.top/2017/11/12/farming/</link>
       <guid>https://blog.futuredream.top/2017/11/12/farming/</guid>
       <pubDate>Sat, 11 Nov 2017 20:42:13 GMT</pubDate>
@@ -295,6 +318,25 @@
     </item>
     
     <item>
+      <title>Git项目拆迁</title>
+      <link>https://blog.futuredream.top/2017/07/29/git_move/</link>
+      <guid>https://blog.futuredream.top/2017/07/29/git_move/</guid>
+      <pubDate>Sat, 29 Jul 2017 11:24:18 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;p&gt;本文摘自 &lt;a href=&quot;http://www.bijishequ.com/detail/260740?p=&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://www.bijishequ.com/detail/260740?p=&lt;/a&gt;&lt;/p&gt;
+        
+      
+      </description>
+      
+      <content:encoded><![CDATA[<p>本文摘自 <a href="http://www.bijishequ.com/detail/260740?p=" target="_blank" rel="noopener">http://www.bijishequ.com/detail/260740?p=</a></p><p>目的：</p><p>将项目在不同的git服务器上进行转移（coding &lt;—&gt; github等）<br>保留所有代码（包括分支）<br>保留提交记录<br>说明：</p><p>将项目从coding.net上面拆迁到github上（或者反过来迁到其他的git服务器 上，方法大致相同）<br>参考文章：<br>Coding.net使用和从Github转移项目到Coding.net<br>操作方法：</p><p>说明：</p><p>我采用的是从coding.net —&gt; 迁移到 github上面<br>步骤：</p><p>git clone –bare git@git.coding.net<em>.git（git 要迁移的项目），会生成 </em>.git项目<br>cd 进入生成的项目 <em>.git 下面<br>git push –mirror git@github.com:</em>.git（需要迁移到的git服务器上面的一个空的项目）<br>大功告成！</p>]]></content:encoded>
+      
+      <comments>https://blog.futuredream.top/2017/07/29/git_move/#disqus_thread</comments>
+    </item>
+    
+    <item>
       <title>springBoot填坑手册二 redis与cache之坑</title>
       <link>https://blog.futuredream.top/2017/07/29/redis1/</link>
       <guid>https://blog.futuredream.top/2017/07/29/redis1/</guid>
@@ -314,22 +356,22 @@
     </item>
     
     <item>
-      <title>Git项目拆迁</title>
-      <link>https://blog.futuredream.top/2017/07/29/git_move/</link>
-      <guid>https://blog.futuredream.top/2017/07/29/git_move/</guid>
-      <pubDate>Sat, 29 Jul 2017 11:24:18 GMT</pubDate>
+      <title>nginx代理TCP模块</title>
+      <link>https://blog.futuredream.top/2017/06/28/nginx_tcp/</link>
+      <guid>https://blog.futuredream.top/2017/06/28/nginx_tcp/</guid>
+      <pubDate>Wed, 28 Jun 2017 09:30:00 GMT</pubDate>
       <description>
       
         
         
-          &lt;p&gt;本文摘自 &lt;a href=&quot;http://www.bijishequ.com/detail/260740?p=&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://www.bijishequ.com/detail/260740?p=&lt;/a&gt;&lt;/p&gt;
+          &lt;h4 id=&quot;nginx1-9之后的版本可代理TCP链接&quot;&gt;&lt;a href=&quot;#nginx1-9之后的版本可代理TCP链接&quot; class=&quot;headerlink&quot; title=&quot;nginx1.9之后的版本可代理TCP链接&quot;&gt;&lt;/a&gt;nginx1.9之后的版本可代理TCP链接&lt;/
         
       
       </description>
       
-      <content:encoded><![CDATA[<p>本文摘自 <a href="http://www.bijishequ.com/detail/260740?p=" target="_blank" rel="noopener">http://www.bijishequ.com/detail/260740?p=</a></p><p>目的：</p><p>将项目在不同的git服务器上进行转移（coding &lt;—&gt; github等）<br>保留所有代码（包括分支）<br>保留提交记录<br>说明：</p><p>将项目从coding.net上面拆迁到github上（或者反过来迁到其他的git服务器 上，方法大致相同）<br>参考文章：<br>Coding.net使用和从Github转移项目到Coding.net<br>操作方法：</p><p>说明：</p><p>我采用的是从coding.net —&gt; 迁移到 github上面<br>步骤：</p><p>git clone –bare git@git.coding.net<em>.git（git 要迁移的项目），会生成 </em>.git项目<br>cd 进入生成的项目 <em>.git 下面<br>git push –mirror git@github.com:</em>.git（需要迁移到的git服务器上面的一个空的项目）<br>大功告成！</p>]]></content:encoded>
+      <content:encoded><![CDATA[<h4 id="nginx1-9之后的版本可代理TCP链接"><a href="#nginx1-9之后的版本可代理TCP链接" class="headerlink" title="nginx1.9之后的版本可代理TCP链接"></a>nginx1.9之后的版本可代理TCP链接</h4><ol><li>其中Windows版本可直接使用</li><li>Linux版本需要在编译(./configure)时添加–with-stream参数</li><li>简单 示例如下</li></ol><p>1.简单代理</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">stream &#123;</div><div class="line">server &#123;</div><div class="line">listen 22;</div><div class="line">proxy_connect_timeout 20s;</div><div class="line">proxy_timeout 2m;</div><div class="line">proxy_pass ip:port;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>2.负载均衡 操作与Http代理非常的类似 下面是一个官方Demo</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">stream &#123;</div><div class="line">    upstream backend &#123;</div><div class="line">        hash $remote_addr consistent;</div><div class="line">        server backend1.example.com:12345 weight=5;</div><div class="line">        server 127.0.0.1:12345 max_fails=3 fail_timeout=30s;</div><div class="line">        server unix:/tmp/backend3;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    server &#123;</div><div class="line">        listen 12345;</div><div class="line">        proxy_connect_timeout 1s;</div><div class="line">        proxy_timeout 3s;</div><div class="line">        proxy_pass backend;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    server &#123;</div><div class="line">        listen [::1]:12345;</div><div class="line">        proxy_pass unix:/tmp/stream.socket;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>完</p>]]></content:encoded>
       
-      <comments>https://blog.futuredream.top/2017/07/29/git_move/#disqus_thread</comments>
+      <comments>https://blog.futuredream.top/2017/06/28/nginx_tcp/#disqus_thread</comments>
     </item>
     
     <item>
@@ -353,25 +395,6 @@
     </item>
     
     <item>
-      <title>nginx代理TCP模块</title>
-      <link>https://blog.futuredream.top/2017/06/28/nginx_tcp/</link>
-      <guid>https://blog.futuredream.top/2017/06/28/nginx_tcp/</guid>
-      <pubDate>Wed, 28 Jun 2017 09:30:00 GMT</pubDate>
-      <description>
-      
-        
-        
-          &lt;h4 id=&quot;nginx1-9之后的版本可代理TCP链接&quot;&gt;&lt;a href=&quot;#nginx1-9之后的版本可代理TCP链接&quot; class=&quot;headerlink&quot; title=&quot;nginx1.9之后的版本可代理TCP链接&quot;&gt;&lt;/a&gt;nginx1.9之后的版本可代理TCP链接&lt;/
-        
-      
-      </description>
-      
-      <content:encoded><![CDATA[<h4 id="nginx1-9之后的版本可代理TCP链接"><a href="#nginx1-9之后的版本可代理TCP链接" class="headerlink" title="nginx1.9之后的版本可代理TCP链接"></a>nginx1.9之后的版本可代理TCP链接</h4><ol><li>其中Windows版本可直接使用</li><li>Linux版本需要在编译(./configure)时添加–with-stream参数</li><li>简单 示例如下</li></ol><p>1.简单代理</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">stream &#123;</div><div class="line">server &#123;</div><div class="line">listen 22;</div><div class="line">proxy_connect_timeout 20s;</div><div class="line">proxy_timeout 2m;</div><div class="line">proxy_pass ip:port;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>2.负载均衡 操作与Http代理非常的类似 下面是一个官方Demo</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">stream &#123;</div><div class="line">    upstream backend &#123;</div><div class="line">        hash $remote_addr consistent;</div><div class="line">        server backend1.example.com:12345 weight=5;</div><div class="line">        server 127.0.0.1:12345 max_fails=3 fail_timeout=30s;</div><div class="line">        server unix:/tmp/backend3;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    server &#123;</div><div class="line">        listen 12345;</div><div class="line">        proxy_connect_timeout 1s;</div><div class="line">        proxy_timeout 3s;</div><div class="line">        proxy_pass backend;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    server &#123;</div><div class="line">        listen [::1]:12345;</div><div class="line">        proxy_pass unix:/tmp/stream.socket;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>完</p>]]></content:encoded>
-      
-      <comments>https://blog.futuredream.top/2017/06/28/nginx_tcp/#disqus_thread</comments>
-    </item>
-    
-    <item>
       <title>Druid Spring Boot Starter数据库链接池新福利</title>
       <link>https://blog.futuredream.top/2017/06/28/druid/</link>
       <guid>https://blog.futuredream.top/2017/06/28/druid/</guid>
@@ -388,26 +411,6 @@
       <content:encoded><![CDATA[<h4 id="druid-spring-boot-starter-1-1版本发布"><a href="#druid-spring-boot-starter-1-1版本发布" class="headerlink" title="druid-spring-boot-starter 1.1版本发布"></a>druid-spring-boot-starter 1.1版本发布</h4><p>Druid 与spingBoot的完美整合由阿里官方发布了,作为最好最快最稳定的数据库连接池,现在有了springBoot版本,真好.<br>官方gitHub文档链接: <a href="https://github.com/alibaba/druid/tree/master/druid-spring-boot-starter" target="_blank" rel="noopener">https://github.com/alibaba/druid/tree/master/druid-spring-boot-starter</a><br>内附有maven地址.</p><p>完</p>]]></content:encoded>
       
       <comments>https://blog.futuredream.top/2017/06/28/druid/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>npm使用过程中遇到的 Cannot find module &#39;internal/fs&#39; 的问题</title>
-      <link>https://blog.futuredream.top/2017/06/08/internal/</link>
-      <guid>https://blog.futuredream.top/2017/06/08/internal/</guid>
-      <pubDate>Wed, 07 Jun 2017 20:32:00 GMT</pubDate>
-      <description>
-      
-        
-        
-          &lt;p&gt;如题: 在使用npm中遇到如下问题:&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/d
-        
-      
-      </description>
-      
-      <content:encoded><![CDATA[<p>如题: 在使用npm中遇到如下问题:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">node 7.0 Cannot find module &apos;internal/fs&apos;</div><div class="line"></div><div class="line">node 6.9 fs: re-evaluating native module sources is not supported. If you are using the graceful-fs module, please update it to a more recent version.</div></pre></td></tr></table></figure><p>  这时候 应该是graceful-fs  这个模块出现了问题!</p><pre><code>可能原因有以下几点:1. 没装2. npm的graceful-fs 出现了多个版本</code></pre><hr><pre><code>解决办法:首先查看: npm list graceful-fs 其次全局安装 graceful-fs  接着 在对应环境再安装一遍</code></pre><p>还有什么问题，也可以问博主，能解决问题就点个赞咯</p>]]></content:encoded>
-      
-      <comments>https://blog.futuredream.top/2017/06/08/internal/#disqus_thread</comments>
     </item>
     
   </channel>
