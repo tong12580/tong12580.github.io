@@ -876,6 +876,8 @@
 <p>1.注解将一个java类定义为切面类<br>2.表示该切面的加载顺序，在切入点前的操作，按order的值由小到大执行,在切入点后的操作，按order的值由大到小执行<br>3.基于lombok的统一日志配置标签 需引入 <a href="https://projectlombok.org/" target="_blank" rel="noopener">lombok</a> 的相关配置.<br>4.定义一个切入点,为该 Package下的所有控制器。<br>5.在webLog()函数执行前，也就是在控制器controller 前先执行doBefore()函数中的内容。这里面记录了URL，请求方式和入参<br>6.统计回调方式，记录result值。</p>
 <p>日志打印如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">2018-02-14 at 21:10:03 CST INFO  org.thymeleaf.TemplateEngine 838 initialize - [THYMELEAF] TEMPLATE ENGINE INITIALIZED</div><div class="line">2018-02-14 at 21:10:17 CST INFO  com.business.config.WebLogHeadAspect 37 doBefore - URL: http://127.0.0.1:8080/, params [&#123;&#125;]</div><div class="line">2018-02-14 at 21:10:17 CST INFO  com.business.config.WebLogHeadAspect 42 doAfterReturning - Result : &quot;index&quot;</div><div class="line">2018-02-14 at 21:10:33 CST INFO  com.business.config.WebLogHeadAspect 37 doBefore - URL: http://127.0.0.1:8080/api/xcl, params []</div><div class="line">2018-02-14 at 21:10:33 CST INFO  com.business.config.WebLogHeadAspect 42 doAfterReturning - Result : &quot;xcl&quot;</div></pre></td></tr></table></figure>
+<p>文末记录一下别的东西， 当node.js升级时，需要重新安装hexo-cil否则无法正常编译。</p>
+
     
 
     
