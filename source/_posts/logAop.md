@@ -73,3 +73,5 @@ categories:
 2018-02-14 at 21:10:33 CST INFO  com.business.config.WebLogHeadAspect 42 doAfterReturning - Result : "xcl"
 
 ```
+
+文末记录一下别的东西， 当node.js升级时，需要重新安装hexo-cil否则无法正常编译。
