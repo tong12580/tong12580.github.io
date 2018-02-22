@@ -38,6 +38,9 @@ categories:
     
         @Before("webLog()")//5
         public void doBefore(JoinPoint joinPoint) {
+            if (joinPoint.getArgs()[0] instanceof ExtendedServletRequestDataBinder) {
+                return;
+            }//7
             ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder
             .getRequestAttributes();
             HttpServletRequest request = attributes.getRequest();
@@ -61,6 +64,10 @@ categories:
 4.定义一个切入点,为该 Package下的所有控制器。
 5.在webLog()函数执行前，也就是在控制器controller 前先执行doBefore()函数中的内容。这里面记录了URL，请求方式和入参
 6.统计回调方式，记录result值。
+
+--- 
+新增
+7. 过滤数据绑定时触发多次切面日志记录 
 
 日志打印如下：
 
