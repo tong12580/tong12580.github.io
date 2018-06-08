@@ -119,7 +119,7 @@ create index on table  ... online
 * alter 表, 增加字段时,如有 default 值, 符合业务需求时,使用not null ;
       1. alter table   表  add (字段名  类型  default  默认值)  ;   
            ---这种写法会将所有的表行update一遍.
-      2. alter table   表  add (字段名  类型  default  默认值  not null )  ;   
+      2. alter table   表  add (字段名  类型  default  默认值  not null )  ;
            ---仅更新数据字典,查询时判断旧数据,从数据字典中取得值.
 
 
