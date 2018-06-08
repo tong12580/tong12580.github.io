@@ -1,4 +1,4 @@
-title: git提交冲突的解决
+title: oracle的锁
 date: 2018/06/08
 tags: 
     -数据库
